@@ -1,5 +1,8 @@
 <template>
   <div id="app" class="container">
+    <video autoplay loop muted class="background-video">
+      <source src="../assets/video/coffee_-_82042 (540p).mp4" type=" video/mp4">
+    </video>
     <main class="container">
       <div class="grid">
         <section>
@@ -21,18 +24,25 @@ export default {
   name: 'App',
   methods: {
     startQuiz() {
-      // Quiz start logic
+      this.$router.push('/start');
     },
     takeALook() {
-      // Browse coffee selection logic
-    }
+      this.$router.push('/list');
+    },
   }
 }
 </script>
 
 <style scoped>
-#app {
-  background-color: black;
+
+.background-video {
+  position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
 }
 
 .hero {
@@ -42,7 +52,6 @@ export default {
   justify-content: center;
   min-height: 100vh;
   color: #f0f0f0;
-  background-color: #121212;
   text-align: center;
 }
 
@@ -50,8 +59,6 @@ export default {
   font-size: 6rem;
   margin-bottom: 2rem;
   color: #C1D3FE;
-  font-family: 'Climate Crists', sans-serif;
-
   font-family: 'Climate Crisis', sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
@@ -83,7 +90,37 @@ export default {
   transition: background-color 0.3s, color 0.3s;
 }
 
-.button-group button:hover {
-  background-color: #fffFFF;
+.button-group .start:hover {
+  background-color: white;
 }
+
+.button-group .look:hover {
+  background-color: white;
+}
+
+
+
+/* 모바일 */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .button-group .start, .button-group .look {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    margin: 0.25rem;
+    border-radius: 5px;
+  }
+
+  .hero {
+    padding: 10px;
+  }
+
+  .background-video {
+    transform-origin: center;
+  }
+}
+
 </style>
