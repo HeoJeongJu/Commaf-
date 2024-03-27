@@ -17,7 +17,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .greeting-container {
     display: flex;
     flex-direction: column;

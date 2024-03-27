@@ -1,13 +1,15 @@
 <template>
   <div class="product-details">
     <nav class="navigation-bar">
-      <i class="fa-duotone fa-arrow-left fa-xl" style="--fa-primary-color: #ffffff; 
-      --fa-secondary-color: #ffffff;" @click="goBack"></i>
+      <i class="fa-solid fa-arrow-left-long fa-2xl" style="color: #ffffff;"></i>
       <img src="../assets/logo.png" class="img" alt="logo">
-      <button @click="buyNow">Buy Now</button>
+      <button class="buy" @click="buyNow">Buy Now</button>
     </nav>
+
     <div class="product-content">
-      <img src="../assets/image.png" alt="Golden Sunrise Coffee" class="product-image">
+      <div class="product-image-box">
+        <img src="../assets/image.png" alt="Golden Sunrise Coffee" class="product-image">
+      </div>
       <h1 class="product-title">Golden Sunrise</h1>
       <p class="product-price">$10.99</p>
       <div class="product-description">
@@ -41,62 +43,95 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 body {
   margin: 0;
 }
 
 #app {
-  margin: 0;
-
-  font-family: 'Spoqa Han Sans Neo', 'sans-serif';
-  font-optical-sizing: auto;
-  font-style: normal;
-}
-
-.product-details {
-  background-color: black;
-  color: #333;
-  max-width: 400px;
-  margin: 0;
-  padding: 20px;
+  margin: 0 auto;
+  max-width: 100%;
 }
 
 .navigation-bar {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
+  align-items: center;
+  padding: 20px 20px 0px 20px;
+}
+
+.fa-2xl {
+  font-size: 2.6em;
+}
+
+.img {
+  border: "0";
+  height: 45px;
+  width: auto;
+  margin-left: 30px;
+}
+
+.buy {
+  color: white;
+  background: black;
+  border: none;
+  font-size: 0.9em;
+  font-weight: 600;
+}
+
+.product-details {
+  background-color: black;
+  color: #333;
+
+  font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 600;
 }
 
 .product-content {
+  width: 100%;
+  padding: 0;
+}
+
+.product-image-box {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 0;
+  background: #D9D9D9;
   text-align: center;
 }
 
 .product-image {
   width: 100%;
   height: auto;
-  margin-bottom: 20px;
-  background: #D9D9D9;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .product-title {
+  text-align: left;
   color: white;
   font-size: 1.5em;
   margin-bottom: 0.5em;
-  text-align: left;
+  padding-left: 20px ;
 }
 
 .product-price {
-  font-size: 1.3em;
+  font-size: 1.5em;
   color: #EE9974;
   margin-bottom: 1em;
   text-align: left;
+  padding-left: 20px;
 }
 
 .product-description {
   text-align: left;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding-left: 20px;
+  font-size: 1.2em;
 }
 
 .product-description p {
@@ -109,5 +144,27 @@ body {
 
 .map {
   color: white;
+  padding-left: 20px;
+  font-weight: 600;
+}
+
+
+
+
+@media (min-width: 900px) {
+
+  #app {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
+
+  .product-details {
+    width: 40%;
+    margin: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
 }
 </style>

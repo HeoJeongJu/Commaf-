@@ -27,7 +27,7 @@ const routes = [
         component: QuizView
     },
     {
-        path: '/item',
+        path: '/items',
         name: 'item',
         component: ListView
     },
@@ -37,6 +37,7 @@ const routes = [
     },
     {
         path: '/result',
+        name: 'result',
         component: ResultView
     }
 
