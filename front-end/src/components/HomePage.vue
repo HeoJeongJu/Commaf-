@@ -27,7 +27,7 @@ export default {
       this.$router.push('/start');
     },
     takeALook() {
-      this.$router.push('/list');
+      this.$router.push('/items');
     },
   }
 }

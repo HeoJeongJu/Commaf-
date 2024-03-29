@@ -8,38 +8,54 @@
             <button @click="buyNow">Share</button>
         </nav>
 
-        <div class="product-card">
-            <p class="sub-title">이거 부제목</p>
-            <h2 class="product-title"><i>{{ recommendation }}</i></h2>
+        <div v-if="recommendation" class="product-card">
+            <p class="sub-title">{{ recommendation.sub_title }}</p>
+            <h2 class="product-title"><i>{{ recommendation.name }}: {{ recommendation.sub_name }}</i></h2>
 
-            <img class="product-image" src="../../assets/image.png" alt="Signature Blend Coffee">
+            <img class="product-image" :src="recommendation.image_url" :alt="recommendation.name">
             <p class="product-description">
-                여기 설명임
+                {{ recommendation. description }}
             </p>
             <div class="button-group">
                 <button class="buy" @click="buyNow">Buy Now</button>
                 <button class="more" @click="learnMore">Learn More</button>
             </div>
         </div>
+
+        <div v-else>
+            결과 생성하는 중...
+        </div>
     </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     data() {
         return {
             recommendation: null
         };
     },
-    created() {
-        this.recommendation = JSON.parse(this.$route.query.recommendation);
+    async created() {
+        await this.getRecommData();
     },
     methods: {
+        async getRecommData() {
+            const getRecommendation = this.$route.query.recommendation;
+
+            try {
+                const res = await axios.get(`http://localhost:3001/questionResult/${getRecommendation}`);
+                this.recommendation = res.data;
+            } catch(err) {
+                console.error('결과를 받아오는 도중 문제가 생김', err);
+            }
+        },
         buyNow() {
             this.$router.push('');
         },
         learnMore() {
-            this.$router.push('/item:1');
+            this.$router.push(`/item/${this.recommendation.name}`);
         },
     }
 }
@@ -102,14 +118,14 @@ body {
 }
 
 .sub-title {
-    font-size: 1.6em;
+    font-size: 1.4em;
     margin: 0 0 0 0;
     margin-bottom: 10px;
 }
 
 .product-description {
-    font-size: 0.9em;
-    margin-bottom: 20px;
+    font-size: 1.5em;
+    margin-bottom: 30px;
 }
 
 .product-image {
