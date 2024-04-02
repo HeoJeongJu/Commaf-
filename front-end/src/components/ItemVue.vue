@@ -5,7 +5,9 @@
       <a href="/">
         <img src="../assets/logo.png" class="logo" alt="logo">
       </a>
-      <button class="buy">Buy Now</button>
+
+      <button class="edit" v-if="isLogin">Edit</button>
+      <button class="buy" v-else>Buy Now</button>
     </nav>
 
     <div class="product-content">
@@ -38,22 +40,38 @@
       <br>
       <br>
       <p>원두를 사용하는 곳</p>
-      <div>여기 지도</div>
+
+      <naver-map class="naver-map" :map-options="mapOptions">
+        <naver-marker v-for="cafe in cafes" :key="cafe._id" :latitude="Number(cafe.x)" :longitude="Number(cafe.y)" />
+      </naver-map>
     </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+import { NaverMap, NaverMarker } from 'vue3-naver-maps'
 
 export default {
+  components: {
+    NaverMap, NaverMarker
+  },
   data() {
     return {
-      coffee: {}
+      coffee: {},
+      mapOptions: {
+        latitude: 37.51347,
+        longitude: 127.041722,
+        zoom: 13,
+      },
+      cafes: [],
+      isLogin: false
     }
   },
-  created() {
-    this.getCoffee();
+  async created() {
+    await this.checkLogin();
+    await this.getCoffee();
+    await this.getMarker();
   },
   methods: {
     goBack() {
@@ -66,6 +84,23 @@ export default {
         this.coffee = res.data;
       } catch (err) {
         console.error('커피 내용을 받아오는 도중 문제가 생김', err);
+      }
+    },
+    async getMarker() {
+      try {
+        const res = await axios.get(`http://localhost:3001/cafe/${
+          this.coffee.name}`);
+        this.cafes = res.data;
+      } catch(err) {
+        console.error("마커를 받아오는 도중 문제가 생김", err);
+      }
+    },
+    async checkLogin() {
+      try {
+        const res = await axios.get('http://localhost:3001/admin/status', { withCredentials: true });
+        this.isLogin = res.data.isLogin; 
+      } catch (err) {
+        console.error('로그인 상태 확인 중 문제 발생', err);
       }
     }
   }
@@ -107,7 +142,7 @@ body {
 
 
 
-.buy {
+.buy, .edit{
   color: white;
   background: black;
   border: none;
@@ -184,6 +219,11 @@ body {
   font-weight: 600;
 }
 
+.naver-map {
+  width: 90%;
+  height: 500px;
+  padding-bottom: 50px;
+}
 
 
 

@@ -1,0 +1,764 @@
+[
+    {
+        "sitetel":"0230151179",
+        "sitewhladdr":"서울특별시 성북구 동선동2가 134 1,2층",
+        "bplcnm":"스타벅스 성신여대정문",
+        "coffee_name":"Golden Sunrise",
+        "x":"37.5907991846214",
+        "y":"127.016043118372"
+    },
+    {
+        "sitetel":"0230151100",
+        "sitewhladdr":"서울특별시 서대문구 창천동 33-9 외 1필지(33-10) 가호 2~4층",
+        "bplcnm":"스타벅스연대점",
+        "coffee_name":"Golden Sunrise",
+        "x":"37.5587521154456",
+        "y":"126.933802483055"
+    },
+    {
+        "sitetel":"028374646",
+        "sitewhladdr":"서울특별시 구로구 구로동 830-1 104,105호",
+        "bplcnm":"메가엠지씨커피 구로디지털탑프라자점",
+        "coffee_name":"Breezy Beans",
+        "x":"37.4815907154566",
+        "y":"126.894452389281"
+    },
+    {
+        "sitetel":"",
+        "sitewhladdr":"서울특별시 영등포구 당산동4가 32-105 대성빌딩",
+        "bplcnm":"국민우유집 영등포점",
+        "coffee_name":"Ethiopian Yirgacheffe",
+        "x":"37.5280150308991",
+        "y":"126.896852088255"
+        },
+    {
+        "sitewhladdr":"서울특별시 마포구 서교동 368-4번지 해냄빌딩 1층일부 ",
+        "bplcnm":"에이난(A-Nan)",
+        "coffee_name":"Wildfire",
+        "x":"37.5513836225017",
+        "y":"126.917176820742"
+    },
+    {
+        "sitetel":"0226650230",
+        "sitewhladdr":"서울특별시 강서구 방화동 193-11번지 불해빌딩 (방화 1동) 103~104호 ",
+        "bplcnm":"이디아 신방화중앙점",
+        "coffee_name":"Chilean Charm",
+        "x":"37.5708524635261",
+        "y":"126.818610760858"
+        },
+    {
+        "sitewhladdr":"서울특별시 중랑구 상봉동 500 상봉 프레미어스 엠코 ",
+        "bplcnm":"달다곰이 상봉점",
+        "coffee_name":"Golden Sunrise",
+        "x":"37.5981011597379",
+        "y":"127.087623680285"
+    },
+    {
+        "sitetel":"",
+        "sitewhladdr":"서울특별시 강서구 등촌동 689 NC 강서점 1층 일부",
+        "bplcnm":"스타벅스 강서NC점",
+        "coffee_name":"Savanna Noir",
+        "x":"37.5599628406781",
+        "y":"126.837459920139"
+    },
+    {
+        "sitetel":"",
+        "sitewhladdr":"서울특별시 강동구 성내동 12-29",
+        "bplcnm":"펠어커피 강동점",
+        "coffee_name":"Walnut Wonder",
+        "x":"37.5364868922896",
+        "y":"127.124203132468"
+        },
+    {
+        "sitewhladdr":"서울특별시 마포구 서교동 329-15번지 ",
+        "bplcnm":"테일러커피",
+        "coffee_name":"Bali Bliss",
+        "x":"37.5561876258751",
+        "y":"126.925327064125"
+    },
+    {
+        "sitetel":"",
+        "sitewhladdr":"서울특별시 관악구 봉천동 908-32",
+        "bplcnm":"별이 빛나는(봉천점)",
+        "coffee_name":"Himalayan Heights",
+        "x":"37.4836747159479",
+        "y":"126.941992636173"
+    },
+    {
+        "sitetel":"0226612917",
+        "sitewhladdr":"서울특별시 강서구 마곡동 739-3 에스비타운 104호",
+        "bplcnm":"컴포즈커피 신방화역점",
+        "coffee_name":"Breezy Beans",
+        "x":"37.5671209872015",
+        "y":"126.815685032696"
+    },
+    {
+        "sitetel":"",
+        "sitewhladdr":"서울특별시 중구 남학동 13-2",
+        "bplcnm":"소셜다이브(단라운지)",
+        "coffee_name":"Breezy Beans",
+        "x":"37.5608200496162",
+        "y":"126.988403359592"
+    },
+    {
+        "sitetel":"0230151173",
+        "sitewhladdr":"서울특별시 송파구 문정동 292 가든파이브 툴동 지하1층 이마트내 B1-26",
+        "bplcnm":"스타벅스 가든파이브",
+        "coffee_name":"Walnut Wonder",
+        "x":"37.4786264066986",
+        "y":"127.116385096033"
+        },
+    {
+        "sitewhladdr":"서울특별시 영등포구 여의도동 35 지상1층 일부 ",
+        "bplcnm":"커피기업동여의도점",
+        "coffee_name":"Sumatra Blend",
+        "x":"37.5219410357997",
+        "y":"126.924077744317"
+    },
+    {
+        "sitetel":"025112360",
+        "sitewhladdr":"서울특별시 강남구 신사동 657-29번지 ",
+        "bplcnm":"스파이더 압구정점",
+        "coffee_name":"Bali Bliss",
+        "x":"37.5259231731213",
+        "y":"127.035634424113"
+    },
+    {
+        "sitetel":"029990787",
+        "sitewhladdr":"서울특별시 도봉구 쌍문동 19-15번지 다보빌딩 ",
+        "bplcnm":"메가엠지씨 쌍문세라믹점",
+        "coffee_name":"Chilean Charm",
+        "x":"37.6594697613678",
+        "y":"127.03234404065"
+        },
+    {
+        "sitewhladdr":"서울특별시 성동구 성수동1가 656-703번지 ",
+        "bplcnm":"카모플라쥬 커피 (camouflage coffee)",
+        "coffee_name":"Breezy Beans",
+        "x":"37.5489864602301",
+        "y":"127.042805111237"
+    },
+    {
+        "sitetel":"",
+        "sitewhladdr":"서울특별시 서대문구 북아현동 1015 이편한세상신촌 402엠동 111-1호",
+        "bplcnm":"메가엠지씨커피 아현역점",
+        "coffee_name":"Chilean Charm",
+        "x":"37.5582590812624",
+        "y":"126.952970898524"
+        },
+    {
+        "sitewhladdr":"서울특별시 관악구 봉천동 1544-1 e편한세상서울대입구 2차 ",
+        "bplcnm":"그로그로",
+        "coffee_name":"Lazy Days",
+        "x":"37.4787929964338",
+        "y":"126.939205506376"
+    },
+    {
+        "sitetel":"0234693592",
+        "sitewhladdr":"서울특별시 송파구 신천동 29 롯데월드타워앤드롯데월드몰",
+        "bplcnm":"롯데웰푸드(주)파스퇴르밀크바 월드몰점",
+        "coffee_name":"Signature Blend",
+        "x":"37.5131011573658",
+        "y":"127.100543192545"
+    },
+    {
+        "sitetel":"027135467",
+        "sitewhladdr":"서울특별시 용산구 청파동2가 55-3번지 ",
+        "bplcnm":"청파동커피",
+        "coffee_name":"Bali Bliss",
+        "x":"37.5449360809704",
+        "y":"126.962986506301"
+        },
+    {
+        "sitewhladdr":"서울특별시 동대문구 전농동 123-1번지 ",
+        "bplcnm":"카페시사",
+        "coffee_name":"Central Perk",
+        "x":"37.583505354999",
+        "y":"127.050334774578"
+        },
+    {
+        "sitewhladdr":"서울특별시 서대문구 창천동 29-81번지 110-2호",
+        "bplcnm":"신촌 시크릿",
+        "coffee_name":"Breezy Beans",
+        "x":"37.5560565938256",
+        "y":"126.935367654883"
+    },
+    {
+        "sitetel":"",
+        "sitewhladdr":"서울특별시 종로구 관수동 20 국일관드림펠리스",
+        "bplcnm":"cafe orange(까페오렌지)",
+        "coffee_name":"Arabian Nights",
+        "x":"37.5697437111558",
+        "y":"126.987088301691"
+        },
+    {
+        "sitewhladdr":"서울특별시 동대문구 휘경동 319-55번지 ",
+        "bplcnm":"언차일드",
+        "coffee_name":"Indo-Viet Roast",
+        "x":"37.5898160615591",
+        "y":"127.054599425326"
+    },
+    {
+        "sitetel":"",
+        "sitewhladdr":"서울특별시 성북구 동선동1가 84-1 1층",
+        "bplcnm":"달리는커피 성신여대점",
+        "coffee_name":"Breezy Beans",
+        "x":"37.5914184504353",
+        "y":"127.016588271072"
+    },
+    {
+        "sitetel":"0226111318",
+        "sitewhladdr":"서울특별시 구로구 고척동 253-216 지상2층",
+        "bplcnm":"카페함크(마을에서함께크는아이들)",
+        "coffee_name":"Bali Bliss",
+        "x":"37.5028744722528",
+        "y":"126.846629358069"
+        },
+    {
+        "sitewhladdr":"서울특별시 강남구 수서동 724번지 로즈데일오피스텔 ",
+        "bplcnm":"착형",
+        "coffee_name":"Golden Sunrise",
+        "x":"37.4873268088592",
+        "y":"127.100250050003"
+    },
+    {
+        "sitewhladdr":"서울특별시 중구 저동2가 84-10 ",
+        "bplcnm":"드림카페(Dream Cafe)",
+        "coffee_name":"Savanna Noir",
+        "x":"37.5649790979799",
+        "y":"126.986400395429"
+    },
+    {
+        "sitetel":"",
+        "sitewhladdr":"서울특별시 강동구 성내동 534-21 성내 퍼스트초이스",
+        "bplcnm":"매머드익스프레스 강동구청점",
+        "coffee_name":"Coconut Kiss",
+        "x":"37.5304091600558",
+        "y":"127.121429023408"
+    },
+    {
+        "sitetel":"",
+        "sitewhladdr":"서울특별시 강남구 삼성동 159-7 현대백화점",
+        "bplcnm":"아위온즈",
+        "coffee_name":"Chilean Charm",
+        "x":"37.5085952823213",
+        "y":"127.056828461464"
+    },
+    {
+        "sitetel":"",
+        "sitewhladdr":"서울특별시 동작구 흑석동 190-28",
+        "bplcnm":"아오스요거트 중앙대점",
+        "coffee_name":"Sumatra Blend",
+        "x":"37.5075726051177",
+        "y":"126.95654735212"
+    },
+    {
+        "sitetel":"",
+        "sitewhladdr":"서울특별시 영등포구 여의도동 37 아일렉스",
+        "bplcnm":"매머드익스프레스 여의도역점",
+        "coffee_name":"Sumatra Blend",
+        "x":"37.5204821342758",
+        "y":"126.921082009667"
+    },
+    {
+        "sitetel":"",
+        "sitewhladdr":"서울특별시 중구 장충동2가 187-22",
+        "bplcnm":"컴포즈커피 동대입구역점",
+        "coffee_name":"Sumatra Blend",
+        "x":"37.5604092487861",
+        "y":"127.002413308964"
+    },
+    {
+        "sitetel":"0222347068",
+        "sitewhladdr":"서울특별시 중구 신당동 52-288번지 (지상1층) ",
+        "bplcnm":"나무",
+        "coffee_name":"Golden Sunrise",
+        "x":"37.5616550926272",
+        "y":"127.015670017228"
+        },
+    {
+        "sitewhladdr":"서울특별시 중구 오장동 206-37번지 지상1층 ",
+        "bplcnm":"사과나무",
+        "coffee_name":"Coconut Kiss",
+        "x":"37.5644245030638",
+        "y":"126.998891956652"
+        },
+    {
+        "sitewhladdr":"서울특별시 영등포구 문래동3가 58-77번지 ",
+        "bplcnm":"우주커피",
+        "coffee_name":"Signature Blend",
+        "x":"37.5143776903858",
+        "y":"126.892297594039"
+    },
+    {
+        "sitetel":"",
+        "sitewhladdr":"서울특별시 서대문구 창천동 52-83",
+        "bplcnm":"오늘도 빙수 앤 커피",
+        "coffee_name":"Harvest Moon",
+        "x":"37.5584438730189",
+        "y":"126.933176831133"
+    },
+    {
+        "sitetel":"",
+        "sitewhladdr":"서울특별시 서초구 내곡동 411 서초더샵포레 106호",
+        "bplcnm":"매머드 익스프레스 내곡동한국콜마점",
+        "coffee_name":"Chilean Charm",
+        "x":"37.452306352919",
+        "y":"127.060850426304"
+    },
+    {
+        "sitetel":"",
+        "sitewhladdr":"서울특별시 동작구 상도동 299-58",
+        "bplcnm":"더리터 상도점",
+        "coffee_name":"Walnut Wonder",
+        "x":"37.4966002530525",
+        "y":"126.927679569882"
+    },
+    {
+        "sitetel":"",
+        "sitewhladdr":"서울특별시 송파구 잠실동 228-7",
+        "bplcnm":"몽글몽글 드로잉",
+        "coffee_name":"Harvest Moon",
+        "x":"37.5062100598848",
+        "y":"127.080029788261"
+        },
+    {
+        "sitewhladdr":"서울특별시 중랑구 묵동 174-4 구산빌딩 ",
+        "bplcnm":"빽다방 먹골역점",
+        "coffee_name":"Savanna Noir",
+        "x":"37.6122020048915",
+        "y":"127.075583778326"
+        },
+    {
+        "sitewhladdr":"서울특별시 강남구 역삼동 623-25번지 ",
+        "bplcnm":"히스카페(His Cafe)",
+        "coffee_name":"Golden Sunrise",
+        "x":"37.5033463047532",
+        "y":"127.027409813988"
+        },
+    {
+        "sitewhladdr":"서울특별시 서초구 반포동 520-3 2층 ",
+        "bplcnm":"(주)동원홈푸드 서울조달청카페",
+        "coffee_name":"Himalayan Heights",
+        "x":"37.499368820798",
+        "y":"127.000097252505"
+    },
+    {
+        "sitetel":"",
+        "sitewhladdr":"서울특별시 구로구 오류동 81-26",
+        "bplcnm":"카페 뜰",
+        "coffee_name":"Indo-Viet Roast",
+        "x":"37.4948585967055",
+        "y":"126.836613655642"
+    },
+    {
+        "sitetel":"",
+        "sitewhladdr":"서울특별시 송파구 가락동 186-4",
+        "bplcnm":"아고커피로스터스 AGO COFFEE ROASTERS",
+        "coffee_name":"Rainforest Rhapso",
+        "x":"37.4940429825831",
+        "y":"127.131954746158"
+    },
+    {
+        "sitewhladdr":"서울특별시 서초구 서초동 1339-2 서초 스페이스다온 1동 301호 ",
+        "bplcnm":"카페 무가공",
+        "coffee_name":"Bali Bliss",
+        "x":"37.489312220565",
+        "y":"127.027058272868"
+    },
+    {
+        "sitetel":"",
+        "sitewhladdr":"서울특별시 강남구 도곡동 956 서브원 강남빌딩",
+        "bplcnm":"스타벅스 양재강남빌딩R점",
+        "coffee_name":"Chilean Charm",
+        "x":"37.4853309780379",
+        "y":"127.033723980314"
+        },
+    {
+        "sitewhladdr":"서울특별시 성동구 행당동 347번지 행당동 대림아파트 ",
+        "bplcnm":"카페(CAFE)357",
+        "coffee_name":"Golden Sunrise",
+        "x":"37.5579016667322",
+        "y":"127.024228421443"
+    },
+    {
+        "sitetel":"",
+        "sitewhladdr":"서울특별시 구로구 구로동 81-3 스페스큐브",
+        "bplcnm":"스타벅스 구로구청점",
+        "coffee_name":"Indo-Viet Roast",
+        "x":"37.493676345226",
+        "y":"126.883980909064"
+        },
+    {
+        "sitewhladdr":"서울특별시 도봉구 쌍문동 423-96번지 1층 ",
+        "bplcnm":"앨수애뇨부리또하우스",
+        "coffee_name":"Savanna Noir",
+        "x":"37.6505418050617",
+        "y":"127.010722589336"
+        },
+    {
+        "sitewhladdr":"서울특별시 서대문구 충정로3가 35-10번지 ",
+        "bplcnm":"오투",
+        "coffee_name":"Savanna Noir",
+        "x":"37.559268038086",
+        "y":"126.958663100808"
+    },
+    {
+        "sitetel":"025832386",
+        "sitewhladdr":"서울특별시 서초구 서초동 1449-7번지 ,18호 거암빌딩 본관 1층 ",
+        "bplcnm":"디자이너주",
+        "coffee_name":"Rainforest Rhapso",
+        "x":"37.4821384496039",
+        "y":"127.013198133611"
+    },
+    {
+        "sitewhladdr":"서울특별시 중구 신당동 122-13번지 ",
+        "bplcnm":"공원커피",
+        "coffee_name":"Signature Blend",
+        "x":"37.5641238244537",
+        "y":"127.015540833693"
+    },
+    {
+        "sitewhladdr":"서울특별시 광진구 자양동 583-11 ",
+        "bplcnm":"카페구들",
+        "coffee_name":"Ethiopian Yirgacheffe",
+        "x":"37.53178304914",
+        "y":"127.071974984979"
+        },
+    {
+        "sitewhladdr":"서울특별시 마포구 서교동 347-14번지 1층 ",
+        "bplcnm":"엘라와루이",
+        "coffee_name":"Andean Almond",
+        "x":"37.5553018986025",
+        "y":"126.9225331768"
+    },
+    {
+        "sitetel":"",
+        "sitewhladdr":"서울특별시 강남구 신사동 565-7",
+        "bplcnm":"제이커피(J COFFEE)",
+        "coffee_name":"Midnight Mocha",
+        "x":"37.5223041242147",
+        "y":"127.024358003489"
+    },
+    {
+        "sitetel":"",
+        "sitewhladdr":"서울특별시 송파구 오금동 151-11",
+        "bplcnm":"카페 해링",
+        "coffee_name":"Wildfire",
+        "x":"37.5005259795292",
+        "y":"127.134470866102"
+    },
+    {
+        "sitetel":"",
+        "sitewhladdr":"서울특별시 송파구 송파동 25 덕성빌딩",
+        "bplcnm":"피치그레이",
+        "coffee_name":"Midnight Mocha",
+        "x":"37.508040186377",
+        "y":"127.104412816076"
+        },
+    {
+        "sitewhladdr":"서울특별시 강남구 역삼동 720-22 엠코스퀘어720 ",
+        "bplcnm":"더빈마켓",
+        "coffee_name":"Bali Bliss",
+        "x":"37.5013395642759",
+        "y":"127.039041558734"
+    },
+    {
+        "sitetel":"025555668",
+        "sitewhladdr":"서울특별시 강남구 대치동 945-1",
+        "bplcnm":"감탄커피(Salad & Sandwich)",
+        "coffee_name":"Wildfire",
+        "x":"37.507887747351",
+        "y":"127.058464491477"
+    },
+    {
+        "sitetel":"",
+        "sitewhladdr":"서울특별시 영등포구 양평동1가 9-1",
+        "bplcnm":"찬스커피",
+        "coffee_name":"Chilean Charm",
+        "x":"37.5218772601916",
+        "y":"126.888318885178"
+    },
+    {
+        "sitetel":"",
+        "sitewhladdr":"서울특별시 성동구 상왕십리동 811 텐즈힐",
+        "bplcnm":"카페인중독 왕십리점",
+        "coffee_name":"Golden Sunrise",
+        "x":"37.5693627215932",
+        "y":"127.021825471372"
+    },
+    {
+        "sitetel":"",
+        "sitewhladdr":"서울특별시 은평구 녹번동 117-116",
+        "bplcnm":"매머드익스프레스 불광혁신파크점",
+        "coffee_name":"Chilean Charm",
+        "x":"37.6083832694096",
+        "y":"126.928591038523"
+    },
+    {
+        "sitetel":"028923812",
+        "sitewhladdr":"서울특별시 금천구 시흥동 814-14번지 지상1층 ",
+        "bplcnm":"피플",
+        "coffee_name":"Arabian Nights",
+        "x":"37.4567688479936",
+        "y":"126.902900495697"
+    },
+    {
+        "sitetel":"",
+        "sitewhladdr":"서울특별시 양천구 목동 916 현대하이페리온",
+        "bplcnm":"매트블랙커피 목동점",
+        "coffee_name":"Midnight Mocha",
+        "x":"37.526854337887",
+        "y":"126.87214469362"
+    },
+    {
+        "sitetel":"",
+        "sitewhladdr":"서울특별시 강동구 천호동 316 도원하늘채8차",
+        "bplcnm":"데니스커피 암사점",
+        "coffee_name":"Ethiopian Yirgacheffe",
+        "x":"37.5479770378965",
+        "y":"127.122929250785"
+        },
+    {
+        "sitewhladdr":"서울특별시 마포구 서교동 368-11번지 ",
+        "bplcnm":"로벤",
+        "coffee_name":"Indo-Viet Roast",
+        "x":"37.5514416672121",
+        "y":"126.917348591712"
+    },
+    {
+        "sitetel":"",
+        "sitewhladdr":"서울특별시 강동구 천호동 437-5 힐데스하임 천호 아파트",
+        "bplcnm":"빽다방 천호힐데스하임점",
+        "coffee_name":"Breezy Beans",
+        "x":"37.5420749436519",
+        "y":"127.123003452472"
+        },
+    {
+        "sitewhladdr":"서울특별시 양천구 신정동 86-8번지 하버드 지상1층 108호",
+        "bplcnm":"안단테",
+        "coffee_name":"Himalayan Heights",
+        "x":"37.5226226935888",
+        "y":"126.870422162581"
+    },
+    {
+        "sitetel":"",
+        "sitewhladdr":"서울특별시 강동구 천호동 331-9 청운명가",
+        "bplcnm":"빌리클럽오브서울",
+        "coffee_name":"Chilean Charm",
+        "x":"37.5455629924604",
+        "y":"127.120702017598"
+    },
+    {
+        "sitetel":"0269598621",
+        "sitewhladdr":"서울특별시 강남구 압구정동 429번지 현대백화점본점 ",
+        "bplcnm":"까눌레 드 꼬레",
+        "coffee_name":"Bali Bliss",
+        "x":"37.5273342718637",
+        "y":"127.024580017857"
+    },
+    {
+        "sitetel":"",
+        "sitewhladdr":"서울특별시 서초구 잠원동 149-2 1,2층",
+        "bplcnm":"스타벅스 서울웨이브아트센터점",
+        "coffee_name":"Golden Sunrise",
+        "x":"37.5182986901526",
+        "y":"127.004337775917"
+    },
+    {
+        "sitetel":"",
+        "sitewhladdr":"서울특별시 광진구 능동 18 어린이대공원",
+        "bplcnm":"산책로카페",
+        "coffee_name":"Midnight Mocha",
+        "x":"37.5495890207655",
+        "y":"127.078687819452"
+    },
+    {
+        "sitetel":"024189685",
+        "sitewhladdr":"서울특별시 송파구 잠실동 208번지 1층 ",
+        "bplcnm":"Belle cake(벨 케이크)",
+        "coffee_name":"Signature Blend",
+        "x":"37.5106454268637",
+        "y":"127.082356006067"
+    },
+    {
+        "sitetel":"",
+        "sitewhladdr":"서울특별시 중구 삼각동 117",
+        "bplcnm":"카페스윗 백년관점",
+        "coffee_name":"Savanna Noir",
+        "x":"37.5678280992348",
+        "y":"126.981343492519"
+        },
+    {
+        "sitewhladdr":"서울특별시 용산구 용문동 5-24 ",
+        "bplcnm":"베이크니틀리",
+        "coffee_name":"Signature Blend",
+        "x":"37.538517205373",
+        "y":"126.9583190913"
+    },
+    {
+        "sitetel":"",
+        "sitewhladdr":"서울특별시 금천구 시흥동 998-6 1층 101호중 일부(좌측)",
+        "bplcnm":"매머드 익스프레스 시흥대교점",
+        "coffee_name":"Central Perk",
+        "x":"37.4539655556243",
+        "y":"126.895151559709"
+        },
+    {
+        "sitewhladdr":"서울특별시 금천구 가산동 371-106번지 가산 더블유센터 115일부호",
+        "bplcnm":"와플산도",
+        "coffee_name":"Bali Bliss",
+        "x":"37.4814164899929",
+        "y":"126.877495786376"
+    },
+    {
+        "sitewhladdr":"서울특별시 송파구 거여동 22-1 ",
+        "bplcnm":"비컴로스터리(Become Roastery)",
+        "coffee_name":"Coconut Kiss",
+        "x":"37.494525237104",
+        "y":"127.139896198359"
+        },
+    {
+        "sitewhladdr":"서울특별시 중구 신당동 363-6번지 1층 ",
+        "bplcnm":"미스터빈(Mr.Bean)",
+        "coffee_name":"Central Perk",
+        "x":"37.5535160591164",
+        "y":"127.006313338817"
+        },
+    {
+        "sitewhladdr":"서울특별시 송파구 문정동 643-1번지 ",
+        "bplcnm":"리프커피",
+        "coffee_name":"Golden Sunrise",
+        "x":"37.485417594152",
+        "y":"127.117274485168"
+    },
+    {
+        "sitetel":"0237717624",
+        "sitewhladdr":"서울특별시 영등포구 여의도동 27-3 하나금융투자빌딩 23층 직원식당내 ",
+        "bplcnm":"카페그랑",
+        "coffee_name":"Arabian Nights",
+        "x":"37.5225761745314",
+        "y":"126.918914616201"
+    },
+    {
+        "sitetel":"",
+        "sitewhladdr":"서울특별시 강남구 역삼동 729-39 혜원빌딩",
+        "bplcnm":"소디스 에스프레소바 역삼",
+        "coffee_name":"Wildfire",
+        "x":"37.4986418167301",
+        "y":"127.039935361763"
+    },
+    {
+        "sitetel":"",
+        "sitewhladdr":"서울특별시 성북구 성북동 209-10",
+        "bplcnm":"<공간> 아침의 피아노",
+        "coffee_name":"Breezy Beans",
+        "x":"37.5925787254404",
+        "y":"126.992222143"
+        },
+    {
+        "sitewhladdr":"서울특별시 강남구 삼성동 113번지 조양빌딩 ",
+        "bplcnm":"딜라이트 카페(Delight cafe)",
+        "coffee_name":"Midnight Mocha",
+        "x":"37.5106043779087",
+        "y":"127.0430469013"
+    },
+    {
+        "sitetel":"025955977",
+        "sitewhladdr":"서울특별시 서초구 방배동 812-23 1층 ",
+        "bplcnm":"오늘도 커피",
+        "coffee_name":"Signature Blend",
+        "x":"37.4909328303567",
+        "y":"126.988009392143"
+    },
+    {
+        "sitetel":"028830530",
+        "sitewhladdr":"서울특별시 관악구 봉천동 10-4 ",
+        "bplcnm":"토프레소 청림점",
+        "coffee_name":"Breezy Beans",
+        "x":"37.4887492958496",
+        "y":"126.956491758099"
+        },
+    {
+        "sitewhladdr":"서울특별시 영등포구 당산동1가 53-1번지 당산빌딩 지하1층 113호실 ",
+        "bplcnm":"비크리스",
+        "coffee_name":"Central Perk",
+        "x":"37.5213672879613",
+        "y":"126.895224684598"
+    },
+    {
+        "sitewhladdr":"서울특별시 송파구 장지동 881-5 에스비트램스퀘어 ",
+        "bplcnm":"컴포즈커피 위례호수공원점",
+        "coffee_name":"Coconut Kiss",
+        "x":"37.481356046108",
+        "y":"127.140049759696"
+    },
+    {
+        "sitetel":"",
+        "sitewhladdr":"서울특별시 용산구 청파동3가 24-50",
+        "bplcnm":"리(RE)",
+        "coffee_name":"Breezy Beans",
+        "x":"37.5441064050596",
+        "y":"126.967419357589"
+    },
+    {
+        "sitetel":"024022969",
+        "sitewhladdr":"서울특별시 송파구 문정동 150번지 올림픽훼밀리타운 ",
+        "bplcnm":"이디야커피 송파올림픽훼미리타운점",
+        "coffee_name":"Central Perk",
+        "x":"37.488519887316",
+        "y":"127.111487292323"
+    },
+    {
+        "sitetel":"024214871",
+        "sitewhladdr":"서울특별시 송파구 방이동 209-1번지 지상1층 ",
+        "bplcnm":"로뎀나무",
+        "coffee_name":"Golden Sunrise",
+        "x":"37.5101578332531",
+        "y":"127.120100768026"
+        },
+    {
+        "sitewhladdr":"서울특별시 동대문구 답십리동 955-17 ",
+        "bplcnm":"아띠커피",
+        "coffee_name":"Andean Almond",
+        "x":"37.5659208614884",
+        "y":"127.055688170688"
+    },
+    {
+        "sitewhladdr":"서울특별시 강남구 역삼동 671-31 ",
+        "bplcnm":"카페아에 강남점",
+        "coffee_name":"Indo-Viet Roast",
+        "x":"37.5044359035596",
+        "y":"127.035428171883"
+        },
+    {
+        "sitewhladdr":"서울특별시 강남구 역삼동 830-67 유성빌딩 ",
+        "bplcnm":"인포메이션",
+        "coffee_name":"Harvest Moon",
+        "x":"37.4940994115483",
+        "y":"127.029754570221"
+    },
+    {
+        "sitetel":"",
+        "sitewhladdr":"서울특별시 마포구 서교동 247-22",
+        "bplcnm":"로우즈(LOWEEZ)",
+        "coffee_name":"Harvest Moon",
+        "x":"37.5584084700519",
+        "y":"126.913934076132"
+        },
+    {
+        "sitewhladdr":"서울특별시 송파구 방이동 193-24번지 한성빌딩 1층 ",
+        "bplcnm":"공리 로스팅 팩토리",
+        "coffee_name":"Walnut Wonder",
+        "x":"37.5114622069826",
+        "y":"127.120573663275"
+    },
+    {
+        "sitetel":"025173975",
+        "sitewhladdr":"서울특별시 서초구 서초동 1327-2 1층",
+        "bplcnm":"고디바 삼성타운",
+        "coffee_name":"Lazy Days",
+        "x":"37.4958652843943",
+        "y":"127.024574122259"
+    }
+]

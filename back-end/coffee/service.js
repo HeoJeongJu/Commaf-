@@ -8,8 +8,6 @@ async function _getList() {
 }
 
 async function _getItem(name) {
-    console.log(name);
-
     const coffeeItem = await Coffee.findOne({ name: name });
 
     if(!coffeeItem) {

@@ -4,18 +4,49 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
+const helmet = require('helmet');
+
+require('dotenv').config();
 
 var app = express();
+
+const session = require('express-session');
+const passport = require('passport');
+require('./passport/index.js');
+
+app.use(session({
+  resave: false,
+  saveUninitialized: false,
+  secret: process.env.SECRET_COOKIE,
+  cookie: {
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+    httpOnly: true,
+    secure: false
+  }
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 var coffeeRoutes = require('./coffee/routes.js');
 var questionRoutes = require('./question/routes.js');
 var questionResultRoutes = require('./question-result/routes.js');
+var cafeRoutes = require('./cafe/routes.js');
+var adminRoutes = require('./admin/routes.js');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:8080',
+  credentials: true,
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  allowedHeaders: 'Content-Type, Accept'
+}));
+app.use(helmet());
+
+
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -26,6 +57,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/coffee', coffeeRoutes);
 app.use('/question', questionRoutes);
 app.use('/questionResult', questionResultRoutes);
+app.use('/cafe', cafeRoutes);
+app.use('/admin', adminRoutes);
 
 
 // catch 404 and forward to error handler

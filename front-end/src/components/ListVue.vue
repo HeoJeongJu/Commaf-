@@ -10,14 +10,17 @@
     </nav>
 
     <div class="coffees-grid">
-      <router-link class="coffee" v-for="coffee in coffees" 
-        :key="coffee.id" :to="{ name: 'item', params: { name: coffee.name } }">
+      <router-link class="coffee" v-for="coffee in coffees" :key="coffee.id"
+        :to="{ name: 'item', params: { name: coffee.name } }">
         <img :src="coffee.image_url" :alt="coffee.name" class="coffee-image">
         <div class="coffee-name"> {{ coffee.name }}</div>
       </router-link>
     </div>
 
 
+    <div class="logout-container">
+      <button class="logout" @click="logout()" v-if="isLogin">Logout</button>
+    </div>
   </div>
 </template>
 
@@ -28,11 +31,13 @@ export default {
   data() {
     return {
       search: '',
-      coffees: []
+      coffees: [],
+      isLogin: false
     }
   },
-  created() {
-    this.getCoffees();
+  async created() {
+    await this.checkLogin();
+    await this.getCoffees();
   },  
   methods: {
     async getCoffees() {
@@ -40,10 +45,26 @@ export default {
         const res = await axios.get('http://localhost:3001/coffee');
         this.coffees = res.data;
       } catch(err) {
-        console.err('커피 목록을 받아오는 도중 문제가 생김', err);
+        console.error('커피 목록을 받아오는 도중 문제가 생김', err);
       }
     },
-
+    async checkLogin() {
+      try {
+        const res = await axios.get('http://localhost:3001/admin/status', { withCredentials: true });
+        this.isLogin = res.data.isLogin;
+      } catch (err) {
+        console.error('로그인 상태 확인 중 문제 발생', err);
+      }
+    },
+    async logout() {
+      try {
+        await axios.get('http://localhost:3001/admin/logout', { withCredentials: true });
+        this.isLogin = false;
+        this.$router.push('/home');
+      } catch (err) {
+        console.error('로그아웃 중 문제 발생', err);
+      }
+    }
   }
 
 }
@@ -122,6 +143,20 @@ export default {
 
 .coffee-name:hover {
   text-decoration: underline white;
+}
+
+.logout-container {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.logout {
+  color: #333;
+  background: black;
+  border: none;
+  font-size: 1.5em;
+  font-weight: 600;
 }
 
 @media (min-width: 900px) {

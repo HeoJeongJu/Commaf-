@@ -5,6 +5,7 @@ import HomePage from "../components/HomePage.vue";
 import QuizView from "../components/quiz/QuizView.vue";
 import QuizStart from "../components/quiz/QuizStart.vue";
 import ResultView from "../components/quiz/ResultView.vue";
+import AdminLoginView from "../components/admin/loginView.vue";
 
 const routes = [ 
     {
@@ -40,6 +41,11 @@ const routes = [
         path: '/result',
         name: 'result',
         component: ResultView
+    },
+    {
+        path: '/admin',
+        name: 'admin',
+        component: AdminLoginView
     }
 
 ]
