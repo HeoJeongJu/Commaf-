@@ -1,9 +1,9 @@
 <template>
   <div class="product-details">
     <nav class="navigation-bar">
-      <i class="fa-solid fa-arrow-left-long fa-2xl" @click="goBack" style="color: #ffffff;"></i>
+      <i class="fa-solid fa-grip-lines fa-2xl" @click="goBack" style="color: #ffffff;"></i>
       <a href="/">
-        <img src="../assets/logo.png" class="logo" alt="logo">
+        <img src="../../assets/logo.png" class="logo" alt="logo">
       </a>
 
       <button class="edit" v-if="isLogin">Edit</button>
@@ -75,7 +75,7 @@ export default {
   },
   methods: {
     goBack() {
-      this.$router.go(-1);
+      this.$router.push('/items');
     }, 
     async getCoffee() {
       try {
@@ -129,7 +129,7 @@ body {
   font-size: 2.6em;
 }
 
-.fa-solid .fa-arrow-left-long .fa-2xl {
+.fa-solid .fa-grip-lines .fa-2xl {
   cursor: pointer;
 }
 

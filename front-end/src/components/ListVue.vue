@@ -5,12 +5,12 @@
       <a href="/">
         <img src="../assets/logo.png" class="logo" alt="logo">
       </a>
-      <input class="search-input" type="text" placeholder="검색: 이름, 향, 원산지 등..." />
+      <input class="search-input" type="text" v-model="search" placeholder="검색: 이름, 향, 원산지 등..." />
       <i class="fa-solid fa-magnifying-glass fa-2xl" style="color: #ffffff;"></i>
     </nav>
 
     <div class="coffees-grid">
-      <router-link class="coffee" v-for="coffee in coffees" :key="coffee.id"
+      <router-link class="coffee" v-for="coffee in filterCoffees" :key="coffee.id"
         :to="{ name: 'item', params: { name: coffee.name } }">
         <img :src="coffee.image_url" :alt="coffee.name" class="coffee-image">
         <div class="coffee-name"> {{ coffee.name }}</div>
@@ -32,7 +32,13 @@ export default {
     return {
       search: '',
       coffees: [],
+      filterCoffees: [],
       isLogin: false
+    }
+  },
+  watch: {
+    search() {
+      this.filtering();
     }
   },
   async created() {
@@ -44,8 +50,27 @@ export default {
       try {
         const res = await axios.get('http://localhost:3001/coffee');
         this.coffees = res.data;
+        this.filterCoffees = res.data;
       } catch(err) {
         console.error('커피 목록을 받아오는 도중 문제가 생김', err);
+      }
+    },
+    filtering() {
+      if(this.search.trim() === '') {
+        this.filterCoffees = this.coffees;
+      } else {
+        this.filterCoffees = this.coffees.filter(coffee => {
+
+          const text = coffee.name.toLowerCase().includes(this.search.toLocaleLowerCase()) || 
+          coffee.region.toLowerCase().includes(this.search.toLocaleLowerCase()) || 
+          coffee.description.toLowerCase().includes(this.search.toLocaleLowerCase());
+
+          const flavor = coffee.flavor_profile.some(flavor => flavor.toLowerCase().includes(this.search.toLocaleLowerCase()));
+
+          const grind = coffee.grind_option.some(grind => grind.toLowerCase().includes(this.search.toLocaleLowerCase()));
+
+          return text || flavor || grind;
+        });
       }
     },
     async checkLogin() {

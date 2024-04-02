@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import ListView from "../components/ListVue.vue";
-import ItemView from "../components/ItemVue.vue";
+import ItemView from "../components/item/ItemVue.vue";
 import HomePage from "../components/HomePage.vue";
 import QuizView from "../components/quiz/QuizView.vue";
 import QuizStart from "../components/quiz/QuizStart.vue";

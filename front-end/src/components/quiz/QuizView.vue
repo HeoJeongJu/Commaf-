@@ -62,6 +62,7 @@ export default {
         async getQuestions() {
             try {
                 const res = await axios.get('http://localhost:3001/question');
+                console.log(res.data);
                 this.questions = res.data;
             } catch(err) {
                 console.err('질문 목록을 받아오는 도중 문제가 생김', err);
