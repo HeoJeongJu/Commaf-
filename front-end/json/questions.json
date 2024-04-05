@@ -3,7 +3,7 @@
         "id": 1,
         "question": "선호하는 커피 원산지는 어디인가요?",
         "options": [
-            { "text": "America(Sentral, South)", "img": "<i class=\"fa-solid fa-earth-americas fa-2xl\" style=\"color: #000000;\"></i>", "next": 2 },
+            { "text": "America(Sentral, South)", "img": "<i class=\"fa-solid fa-earth-americas fa-2xl\" style=\"color: #000000;\"></i>", "tags": { "region": ["Sentral America", "South America"]}, "next": 2 },
             { "text": "Africa, Asia Pacific, Middle East", "img": "<i class=\"fa-solid fa-earth-asia fa-2xl\" style=\"color: #000000;\"></i>", "next": 7 }
         ]
     },
@@ -11,23 +11,23 @@
         "id": 2,
         "question": "로스팅 정도를 무엇으로 하시겠습니까?",
         "options": [
-            { "text": "ligit-medium roast", "img": "<i class=\"fa-solid fa-fire fa-2xl\" style=\"color: #000000;\"></i>", "next": 3 },
-            { "text": "dark roast", "img": "<i class=\"fa-solid fa-fire-burner fa-2xl\" style=\"color: #000000;\"></i>", "next": 6 }
+            { "text": "ligit-medium roast", "img": "<i class=\"fa-solid fa-fire fa-2xl\" style=\"color: #000000;\"></i>", "tags": { "roast_level": [1, 2, 3]}, "next": 3 },
+            { "text": "dark roast", "img": "<i class=\"fa-solid fa-fire-burner fa-2xl\" style=\"color: #000000;\"></i>", "tags": {"roast_level": [4, 5]}, "next": 6 }
         ]
     },
     {
         "id": 3,
         "question": "어떤 분쇄 옵션을 원하시나요?",
         "options": [
-            { "text": "Whole Bean or Cafetiere", "img": "<i class=\"fa-solid fa-bottle-droplet fa-2xl\" style=\"color: #000000;\"></i>", "next": 4 },
-            { "text": "Filter or Espresso", "img": "<i class=\"fa-solid fa-filter fa-2xl\" style=\"color: #000000;\"></i>" , "next": 14 }
+            { "text": "Whole Bean or Cafetiere or French press,", "img": "<i class=\"fa-solid fa-bottle-droplet fa-2xl\" style=\"color: #000000;\"></i>", "tags": { "grind_option": ["Whole Bean", "Cafetiere", "French press"]}, "next": 4 },
+            { "text": "Filter or Espresso or Pour Over", "img": "<i class=\"fa-solid fa-filter fa-2xl\" style=\"color: #000000;\"></i>" , "tags": {"grind_option": ["Filter", "Espresso", "Pour Over"]}, "next": 14 }
         ]
     },
     {
         "id": 4,
         "question": "과일 향이 있는 것을 원하시나요?",
         "options": [
-            { "text": "Yes", "img": "<i class=\"fa-solid fa-lemon fa-2xl\" style=\"color: #ecf000;\"></i>", "recommendation": ["Breezy Veans", "Lazy Days"] },
+            { "text": "Yes", "img": "<i class=\"fa-solid fa-lemon fa-2xl\" style=\"color: #ecf000;\"></i>", "tags": { "flavor_profile": ["Citrusy", "Citrus", "Black Cherry", "Blackcurrant", "Tropical Fruit"]} },
             { "text": "No", "img": "<i class=\"fa-solid fa-xmark fa-2xl\" style=\"color: #000000;\"></i>", "next": 5 }
         ]
     },
@@ -35,15 +35,15 @@
         "id": 5,
         "question": "견과류나 꽃 향기를 원하시나요?",
         "options": [
-            { "text": "Yes", "img": "<i class=\"fa-solid fa-fan fa-2xl\" style=\"color: #ff94e8;\"></i>", "recommendation": ["Andean Almond"] },
-            { "text": "No", "img": "<i class=\"fa-solid fa-xmark fa-2xl\" style=\"color: #000000;\"></i>", "recommendation": ["Walnut Wonder"] }
+            { "text": "Yes", "img": "<i class=\"fa-solid fa-fan fa-2xl\" style=\"color: #ff94e8;\"></i>", "tags": {"flavor_profile": ["Nutty","Hazelnut", "Almond", "Floral"]}},
+            { "text": "No", "img": "<i class=\"fa-solid fa-xmark fa-2xl\" style=\"color: #000000;\"></i>", "tags": { "flavor_profile": ["Smooth"]}, "recommendation": ["Walnut Wonder"] }
         ]
     },
     {
         "id": 6,
         "question": "견과류나 초콜릿 향을 원하시나요?",
         "options": [
-            { "text": "Yes", "img": "<i class=\"fa-solid fa-cookie-bite fa-2xl\" style=\"color: #5f2607;\"></i>", "recommendation": ["Midnight Mocha", "Harvest Moon"] },
+            { "text": "Yes", "img": "<i class=\"fa-solid fa-cookie-bite fa-2xl\" style=\"color: #5f2607;\"></i>", "tags": {"flavor_profile": ["Dark Chocolate","Nutty", "Cocoa", "Hazelnut", "Almond", "Chocolate", "Milk Chocolate"]}, "recommendation": ["Midnight Mocha", "Harvest Moon"] },
             { "text": "No", "img": "<i class=\"fa-solid fa-xmark fa-2xl\" style=\"color: #000000;\"></i>", "recommendation": ["Signature Blend"]}
         ]
     },

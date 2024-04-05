@@ -1,0 +1,48 @@
+[ 
+    {
+        "question": "선호하는 커피 원산지는 어디인가요?",
+        "options": [
+            { "text": "America(Sentral, South)", "img": "<i class=\"fa-solid fa-earth-americas fa-2xl\" style=\"color: #000000;\"></i>", "tags": { "region": ["Sentral America", "South America"]}},
+            { "text": "Africa", "img": "<i class=\"fa-regular fa-earth-africa fa-2xl\" style=\"color: #000000;\"></i>","tags": { "region": ["Africa"]}},
+            { "text": "Asia Pacific", "img": "<i class=\"fa-solid fa-earth-asia fa-2xl\" style=\"color: #000000;\"></i>","tags": { "region": ["Asia Pacific"]}},
+            { "text": "Middle East", "img": "<i class=\"fa-solid fa-earth-asia fa-2xl\" style=\"color: #000000;\"></i>","tags": { "region": ["Middle East"]}}
+        ]
+    },
+    {
+        "question": "로스팅 정도를 무엇으로 하시겠습니까?",
+        "options": [
+            { "text": "Light to Medium", "img": "<i class=\"fa-solid fa-fire fa-2xl\" style=\"color: #000000;\"></i>", "tags": { "roast_level": [1, 2, 3]} },
+            { "text": "Dark", "img": "<i class=\"fa-solid fa-fire-burner fa-2xl\" style=\"color: #000000;\"></i>", "tags": {"roast_level": [4, 5]}}
+        ]
+    },
+    {
+        "question": "어떤 분쇄 옵션을 원하시나요?",
+        "options": [
+            { "text": "Whole Bean", "img": "<i class=\"fa-brands fa-behance fa-2xl\" style=\"color: #000000;\"></i>", "tags": { "grind_option": ["Whole Bean"]} },
+            { "text": "Cafetiere", "img": "<i class=\"fa-solid fa-mug-saucer fa-2xl\" style=\"color: #000000;\"></i>", "tags": { "grind_option": ["Cafetiere"]} },
+            { "text": "Filter", "img": "<i class=\"fa-regular fa-filter fa-2xl\" style=\"color: #000000;\"></i>", "tags": { "grind_option": ["Filter"]} },
+            { "text": "Espresso", "img": "<i class=\"fa-light fa-kitchen-set fa-2xl\" style=\"color: #000000;\"></i>", "tags": { "grind_option": ["Espresso"]} },
+            { "text": "French press", "img": "<i class=\"fa-regular fa-compress fa-2xl\" style=\"color: #000000;\"></i>", "tags": { "grind_option": ["French press"]} },
+            { "text": "Pour Over", "img": "<i class=\"fa-regular fa-glass-water fa-2xl\" style=\"color: #000000;\"></i>" , "tags": {"grind_option": ["Pour Over"]}}
+        ]
+    },
+    {
+        "question": "선호하는 기본 맛은 무엇인가요?",
+        "options": [
+            { "text": "과일향", "img": "<i class=\"fa-solid fa-lemon fa-2xl\" style=\"color: #ecf000;\"></i>", "tags": { "flavor_profile": ["Citrusy", "Citrus", "Black Cherry", "Blackcurrant", "Tropical Fruit", "Blueberry"]} },
+            { "text": "초콜릿향", "img": "<i class=\"fa-solid fa-cookie-bite fa-2xl\" style=\"color: #9a5823;\"></i>", "tags": { "flavor_profile": ["Dark Chocolate", "Milk Chocolate", "Chocolate", "Cocoa"]}},
+            { "text": "견과류 및 곡물향", "img": "<i class=\"fa-light fa-wheat-awn fa-2xl\" style=\"color: #d3aa3c;\"></i>", "tags": { "flavor_profile": ["Nutty", "Almond", "Hazelnut"]}},
+            { "text": "스파이시 및 허브향", "img": "<i class=\"fa-solid fa-pepper-hot fa-2xl\" style=\"color: #e31616;\"></i>", "tags": { "flavor_profile": ["Spicy", "Cinnamon", "Clove", "Cardamom"]}}
+        ]
+    },
+    {
+        "question": "선호하는 추가적인 맛은 무엇인가요?",
+        "options": [
+            { "text": "달콤한 맛", "img": "<i class=\"fa-solid fa-ice-cream fa-2xl\" style=\"color: #e98be6;\"></i>", "tags": { "flavor_profile": ["Vanilla", "Caramel", "Toffee", "Molasses"]} },
+            { "text": "스모키한 맛", "img": "<i class=\"fa-solid fa-joint fa-2xl\" style=\"color: #000000;\"></i>", "tags": { "flavor_profile": ["Smoke"]}},
+            { "text": "신선함 및 산미", "img": "<i class=\"fa-regular fa-seedling fa-2xl\" style=\"color: #4cc26a;\"></i>", "tags": { "flavor_profile": ["Citrusy"]}},
+            { "text": "플로럴 및 꽃향기", "img": "<i class=\"fa-duotone fa-fan fa-2xl\" style=\"--fa-primary-color: #ece641; --fa-secondary-color: #ece641;\"></i>", "tags": { "flavor_profile": ["Floral", "Honey"]}},
+            { "text": "기타 특별한 맛", "img": "<i class=\"fa-regular fa-blender fa-2xl\" style=\"color: #000000;\"></i>", "tags": { "flavor_profile": ["Coconut", "Espresso", "Earthy", "Smooth "]}}
+        ]
+    }
+]

@@ -24,10 +24,10 @@ export default {
   name: 'App',
   methods: {
     startQuiz() {
-      this.$router.push('/start');
+      this.$router.push({ name: 'start' });
     },
     takeALook() {
-      this.$router.push('/items');
+      this.$router.push({ name: 'items' });
     },
   }
 }

@@ -25,7 +25,6 @@ export default {
   methods: {
     async login() {
       try {
-        console.log(`이메일: ${this.id}, 비밀번호: ${this.password}`);
         const data = {
           id: this.id,
           password: this.password

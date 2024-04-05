@@ -6,10 +6,13 @@ import QuizView from "../components/quiz/QuizView.vue";
 import QuizStart from "../components/quiz/QuizStart.vue";
 import ResultView from "../components/quiz/ResultView.vue";
 import AdminLoginView from "../components/admin/loginView.vue";
+import AdminAddItemView from "../components/admin/addItemView.vue";
+
 
 const routes = [ 
     {
         path: '/',
+        name: 'main',
         redirect: '/home'
     },
     {
@@ -46,7 +49,13 @@ const routes = [
         path: '/admin',
         name: 'admin',
         component: AdminLoginView
+    },
+    {
+        path: '/admin/addItem',
+        name: 'addItem',
+        component: AdminAddItemView
     }
+
 
 ]
 

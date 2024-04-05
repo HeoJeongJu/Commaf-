@@ -9,6 +9,7 @@ var debug = require('debug')('back-end:server');
 var http = require('http');
 const mongoose = require('mongoose');
 require('dotenv').config();
+const { getMongoDbClient, connectMongoDB } = require("../middlewares/mongoDB");
 
 /**
  * Get port from environment and store in Express.
@@ -27,10 +28,8 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
 
+/*
 const DB_URL = process.env.MONGODB_URL;
 
 mongoose.connect(DB_URL);
@@ -42,6 +41,18 @@ db.on("connected", () =>
 db.on("error", (error) =>
   console.error("\nMongoDB 연결에 실패하였습니다...\n" + DB_URL + "\n" + error)
 );
+*/
+
+connectMongoDB().then(connected => {
+  if (connected) {
+    server.listen(port);
+    server.on('error', onError);
+    server.on('listening', onListening);
+  } else {
+    console.error("Failed to connect to MongoDB");
+    process.exit(1);
+  }
+});
 
 /**
  * Normalize a port into a number, string, or false.
@@ -102,3 +113,12 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+process.on('SIGINT', async () => {
+  const client = getMongoDbClient();
+  if (client) {
+    await client.close();
+  }
+  console.log('MongoDB connection closed.');
+  process.exit(0);
+});

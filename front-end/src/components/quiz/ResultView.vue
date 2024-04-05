@@ -43,9 +43,9 @@ export default {
     methods: {
         async getRecommData() {
             const getRecommendation = this.$route.query.recommendation;
-
+            
             try {
-                const res = await axios.get(`http://localhost:3001/questionResult/${getRecommendation}`);
+                const res = await axios.get(`http://localhost:3001/recommendations/${getRecommendation}`);
                 this.recommendation = res.data;
             } catch(err) {
                 console.error('결과를 받아오는 도중 문제가 생김', err);

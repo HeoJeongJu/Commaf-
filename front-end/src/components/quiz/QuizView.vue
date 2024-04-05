@@ -34,6 +34,7 @@ export default {
             currentQuestionIndex: 0,
             questions: [],
             isLoading: true,
+            selectedOption: []
         }
     },
     computed: {
@@ -50,13 +51,13 @@ export default {
     },
     methods: {
         selectOption(option) {
-            if ('recommendation' in option) {
-                const randomRecommendation = option.recommendation.length > 1 ?
-                    option.recommendation[Math.floor(Math.random() * option.recommendation.length)] 
-                    : option.recommendation[0];
-                this.$router.push({ name: 'result', query: { recommendation: randomRecommendation } });
-            } else if ('next' in option) {
-                this.currentQuestionIndex = this.questions.findIndex(question => question.id === option.next);
+            if (option.tags) {
+                this.selectedOption.push(option.tags);
+            }
+            if (this.currentQuestionIndex < this.questions.length - 1) {
+                this.currentQuestionIndex++;
+            } else {
+                this.fetchRecommendations();
             }
         },
         async getQuestions() {
@@ -65,9 +66,19 @@ export default {
                 console.log(res.data);
                 this.questions = res.data;
             } catch(err) {
-                console.err('질문 목록을 받아오는 도중 문제가 생김', err);
+                console.error('질문 목록을 받아오는 도중 문제가 생김', err);
             }
-        }
+        },
+        async fetchRecommendations() {
+            try {
+                const res = await axios.post('http://localhost:3001/recommendations/result', this.selectedOption );
+                
+
+                this.$router.push({ name: 'result', query: { recommendation: res.data } });
+            } catch (err) {
+                console.error('추천을 가져오는 중 오류 발생:', err);
+            }
+        },
     }
 }
 </script>

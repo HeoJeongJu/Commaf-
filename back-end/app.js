@@ -10,6 +10,11 @@ require('dotenv').config();
 
 var app = express();
 
+app.use(cors({
+  origin: 'http://localhost:8080',
+  credentials: true,
+}));
+
 const session = require('express-session');
 const passport = require('passport');
 require('./passport/index.js');
@@ -30,7 +35,7 @@ app.use(passport.session());
 
 var coffeeRoutes = require('./coffee/routes.js');
 var questionRoutes = require('./question/routes.js');
-var questionResultRoutes = require('./question-result/routes.js');
+var recommendationsRoutes = require('./recommendations/routes.js');
 var cafeRoutes = require('./cafe/routes.js');
 var adminRoutes = require('./admin/routes.js');
 
@@ -38,12 +43,7 @@ var adminRoutes = require('./admin/routes.js');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use(cors({
-  origin: 'http://localhost:8080',
-  credentials: true,
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  allowedHeaders: 'Content-Type, Accept'
-}));
+
 app.use(helmet());
 
 
@@ -56,7 +56,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/coffee', coffeeRoutes);
 app.use('/question', questionRoutes);
-app.use('/questionResult', questionResultRoutes);
+app.use('/recommendations', recommendationsRoutes);
 app.use('/cafe', cafeRoutes);
 app.use('/admin', adminRoutes);
 
