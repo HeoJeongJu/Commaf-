@@ -1,8 +1,6 @@
-const { GridFSBucket, ObjectId } = require('mongodb');
 const errorMessages = require('../error/errorMessages');
 //const Coffee = require('./model');
-const { getMongoDbClient } = require('../middlewares/mongoDB');
-const stream = require('stream');
+const { getMongoDbClient, getImage } = require('../middlewares/mongoDB');
 
 async function _getList() {
     try {
@@ -44,7 +42,7 @@ async function _getItem(name) {
         if(coffeeItem.image_id) {
                 const imageBase64 = await getImage(coffeeItem.image_id);
                 coffeeItem.image_url = `data:image/jpeg;base64, ${imageBase64}`;
-            }
+        }
 
         return coffeeItem;
     } catch(err) {
@@ -53,29 +51,6 @@ async function _getItem(name) {
     }
 }
 
-async function getImage(object_id) {
-  return new Promise((resolve, reject) => {
-    const client = getMongoDbClient();
-    const db = client.db(process.env.MONGODB_NAME);
-    const bucket = new GridFSBucket(db, { bucketName: 'images'});
-    
-    const downloadStream = bucket.openDownloadStream(new ObjectId(object_id));
-    let data = [];
-
-    downloadStream.on('data', (chunk) => {
-            data.push(chunk);
-        });
-    downloadStream.on('error', (err) => {
-        reject(err);
-    });
-    downloadStream.on('end', () => {
-        resolve(Buffer.concat(data).toString('base64'));
-    });
-  });
-
-    
-  
-};
 
 
 

@@ -23,7 +23,7 @@
             </div>
             <div class="form-group form-group--inline">
                 <label for="name">Price($)</label>
-                <input type="number" id="price" v-model="coffee.price">
+                <input type="number" id="price" step="0.01"  v-model="coffee.price">
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
@@ -105,15 +105,15 @@
             <h1>커피 추천 결과</h1>
             <div class="form-group form-group--inline">
                 <label for="sub_name">Sub Name</label>
-                <input type="text" id="sub_name" v-model="sub_name">
+                <input type="text" id="sub_name" v-model="coffee.sub_name">
             </div>
             <div class="form-group form-group--inline">
                 <label for="sub_title">Sub Title</label>
-                <input type="text" id="sub_title" v-model="sub_title">
+                <input type="text" id="sub_title" v-model="coffee.sub_title">
             </div>
             <div class="form-group">
                 <label for="comm_description">Description</label>
-                <textarea id="comm_description" v-model="comm_description"></textarea>
+                <textarea id="comm_description" v-model="coffee.comm_description"></textarea>
             </div>
 
             <button type="submit" class="save">저장</button>
@@ -135,6 +135,9 @@ export default {
                 roast_level: 1,
                 flavor_profile: [],
                 grind_option: [],
+                sub_name: '',
+                sub_title: '',
+                comm_description: ''
             },
             imageFile: null,
             newFlavor: 'Citrus',
@@ -183,8 +186,6 @@ export default {
                     formData.append('image', this.imageFile);
                 }
 
-                console.log(formData);
-
                 await axios.post('http://localhost:3001/admin/addItem', formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
@@ -192,8 +193,9 @@ export default {
                     withCredentials: true
                 });
 
-                alert('성공?');
+                this.$router.push({ name: 'items' });
             } catch (err) {
+                alert("추가 중 오류가 발생했습니다. 다시 한 번 확인해 주세요.");
                 console.error('추가 중 오류가 발생했습니다.', err);
             }
         }

@@ -63,7 +63,6 @@ export default {
         async getQuestions() {
             try {
                 const res = await axios.get('http://localhost:3001/question');
-                console.log(res.data);
                 this.questions = res.data;
             } catch(err) {
                 console.error('질문 목록을 받아오는 도중 문제가 생김', err);
@@ -73,7 +72,6 @@ export default {
             try {
                 const res = await axios.post('http://localhost:3001/recommendations/result', this.selectedOption );
                 
-
                 this.$router.push({ name: 'result', query: { recommendation: res.data } });
             } catch (err) {
                 console.error('추천을 가져오는 중 오류 발생:', err);

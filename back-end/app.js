@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
 const helmet = require('helmet');
+const MongoStore = require('connect-mongo');
 
 require('dotenv').config();
 
@@ -26,8 +27,13 @@ app.use(session({
   cookie: {
     maxAge: 30 * 24 * 60 * 60 * 1000,
     httpOnly: true,
-    secure: false
-  }
+    secure: false,
+  },
+  store: MongoStore.create({
+    mongoUrl: process.env.MONGODB_URL,
+    dbName: process.env.MONGODB_NAME,
+    collectionName: 'sessions',
+  })
 }));
 app.use(passport.initialize());
 app.use(passport.session());

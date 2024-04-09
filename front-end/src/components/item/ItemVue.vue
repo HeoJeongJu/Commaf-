@@ -36,34 +36,28 @@
       </div>
     </div>
 
-    <div class="map">
-      <br>
-      <br>
-      <p>원두를 사용하는 곳</p>
+    <br>
+    <br>
+    <p class="cafes">원두를 사용하는 곳</p>
+    <KakaoMap v-if="coffee.name" v-bind:name="coffee.name" />
 
-      <naver-map class="naver-map" :map-options="mapOptions">
-        <naver-marker v-for="cafe in cafes" :key="cafe._id" :latitude="Number(cafe.x)" :longitude="Number(cafe.y)" />
-      </naver-map>
+    <div class="delete-container">
+      <button class="delete" @click="deleteItem()" v-if="isLogin">Delete</button>
     </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
-import { NaverMap, NaverMarker } from 'vue3-naver-maps'
+import KakaoMap from '../map/KakaoMap.vue';
 
 export default {
   components: {
-    NaverMap, NaverMarker
+    KakaoMap
   },
   data() {
     return {
       coffee: {},
-      mapOptions: {
-        latitude: 37.51347,
-        longitude: 127.041722,
-        zoom: 13,
-      },
       cafes: [],
       isLogin: false
     }
@@ -71,7 +65,6 @@ export default {
   async created() {
     await this.checkLogin();
     await this.getCoffee();
-    await this.getMarker();
   },
   methods: {
     goBack() {
@@ -86,21 +79,21 @@ export default {
         console.error('커피 내용을 받아오는 도중 문제가 생김', err);
       }
     },
-    async getMarker() {
-      try {
-        const res = await axios.get(`http://localhost:3001/cafe/${
-          this.coffee.name}`);
-        this.cafes = res.data;
-      } catch(err) {
-        console.error("마커를 받아오는 도중 문제가 생김", err);
-      }
-    },
     async checkLogin() {
       try {
         const res = await axios.get('http://localhost:3001/admin/status', { withCredentials: true });
         this.isLogin = res.data.isLogin; 
       } catch (err) {
         console.error('로그인 상태 확인 중 문제 발생', err);
+      }
+    },
+    async deleteItem() {
+      try {
+        const coffeeName = this.$route.params.name;
+        await axios.delete(`http://localhost:3001/admin/item/${coffeeName}`, { withCredentials: true });
+        this.$router.push({ name: 'items' });
+      } catch (err) {
+        console.error('삭제 중 문제 발생', err);
       }
     }
   }
@@ -139,8 +132,6 @@ body {
   width: auto;
   margin-left: 30px;
 }
-
-
 
 .buy, .edit{
   color: white;
@@ -213,19 +204,27 @@ body {
   color: #555;
 }
 
-.map {
+.cafes {
   color: white;
   padding-left: 20px;
+  font-size: 1.5em;
+}
+
+.delete-container {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.delete {
+  color: #BB2828;
+  background: #333;
+  border: none;
+  font-size: 1.5em;
   font-weight: 600;
+  border-radius: 10px;
+  width: 60%;
 }
-
-.naver-map {
-  width: 90%;
-  height: 500px;
-  padding-bottom: 50px;
-}
-
-
 
 @media (min-width: 900px) {
 

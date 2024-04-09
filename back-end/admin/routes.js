@@ -9,6 +9,8 @@ router.post('/login', login_required.isNotLogin, index.login);
 router.get('/logout', login_required.isLogin, index.logout);
 router.get('/status', index.status);
 router.post('/addItem', login_required.isLogin, upload.single('image'), index.addItem);
+router.patch('/item/:name', login_required.isLogin, index.updateItem);
+router.delete('/item/:name', login_required.isLogin, index.deleteItem);
 
 
 module.exports = router;

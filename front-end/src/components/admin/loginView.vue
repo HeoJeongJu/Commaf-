@@ -34,6 +34,7 @@ export default {
         this.$router.push('/items');
       } catch(err) {
         console.error(err);
+        alert("아이디와 패스워드를 확인해 주세요.");
       }
     }
   }

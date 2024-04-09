@@ -43,7 +43,7 @@ export default {
     methods: {
         async getRecommData() {
             const getRecommendation = this.$route.query.recommendation;
-            
+
             try {
                 const res = await axios.get(`http://localhost:3001/recommendations/${getRecommendation}`);
                 this.recommendation = res.data;

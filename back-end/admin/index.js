@@ -1,7 +1,10 @@
 const svc = require('./service.js');
 const { getMongoDbClient } = require("../middlewares/mongoDB");
 const passport = require('../passport/index');
-const { uploadFileGrid } = require('../middlewares/upload.js')
+const { uploadFileGrid } = require('../middlewares/upload.js');
+const errorMessages = require('../error/errorMessages.js');
+const { ObjectId } = require('mongodb');
+const { GridFSBucket } = require('mongodb');
 require('dotenv').config();
 
 
@@ -46,7 +49,6 @@ const status = (req, res, next) => {
 
 const addItem = async (req, res) => {
     try {
-        
         const image = await uploadFileGrid(req.file);
 
         const client = getMongoDbClient();
@@ -57,14 +59,23 @@ const addItem = async (req, res) => {
             description: req.body.description,
             price: req.body.price,
             region: req.body.region,
-            weight: req.body.weight,
+            weight: Number(req.body.weight),
             flavor_profile: req.body.flavor_profile,
             grind_option: req.body.grind_option,
-            roast_level: req.body.roast_level,
+            roast_level: Number(req.body.roast_level),
             image_id: image
         };
 
+        const resultData = {
+            name: req.body.name,
+            sub_name: req.body.sub_name,
+            sub_title: req.body.sub_title,
+            description: req.body.comm_description,
+            image_id: image
+        }
+
         await db.collection('coffees').insertOne(coffeeData);
+        await db.collection('recommendations').insertOne(resultData);
 
         res.status(201).send("Coffee and image saved successfully.");
     } catch (err) {
@@ -73,7 +84,52 @@ const addItem = async (req, res) => {
     }
 }
 
+const updateItem = async (req, res, next) => {
+    try {
+        const client = getMongoDbClient();
+        const db = client.db(process.env.MONGODB_NAME);
+
+        const collection = db.collection('coffees');
+
+        const name = req.params.name;
+    } catch (err) {
+        console.error(err);
+        next();
+    }
+}
+
+const deleteItem = async (req, res, next) => {
+    try {
+        const client = getMongoDbClient();
+        const db = client.db(process.env.MONGODB_NAME);
+
+        const collection = db.collection('coffees');
+
+        const name = req.params.name;
+        const coffeeItem = await collection.findOne({ name: name });
+
+        if(!coffeeItem) {
+            throw new Error(errorMessages.NOT_EXIST_COFFEE);
+        }
+
+        const bucket = new GridFSBucket(db, { bucketName: 'images'});
+        if(coffeeItem.image_id) {
+            bucket.delete(new ObjectId(coffeeItem.image_id));
+        }
+        
+        const result = await collection.deleteOne({name : coffeeItem.name});
+
+        if(result.deletedCount > 0) {
+            res.status(200).send("delete success");
+        } else {
+            res.status(400).send("Your request was not performed properly.")
+        }
+    } catch (err) {
+        console.error(err);
+        next();
+    }
+}
 
 module.exports = {
-    login, logout, status, addItem
+    login, logout, status, addItem, updateItem, deleteItem
 }
