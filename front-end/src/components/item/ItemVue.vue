@@ -6,8 +6,8 @@
         <img src="../../assets/logo.png" class="logo" alt="logo">
       </a>
 
-      <button class="edit" v-if="isLogin">Edit</button>
-      <button class="buy" v-else>Buy Now</button>
+      <button class="edit" @click="edit()" v-if="isLogin">Edit</button>
+      <button class="buy" v-else>Share</button>
     </nav>
 
     <div class="product-content">
@@ -50,6 +50,7 @@
 <script>
 import axios from 'axios';
 import KakaoMap from '../map/KakaoMap.vue';
+import { mapActions, mapState } from 'vuex';
 
 export default {
   components: {
@@ -57,7 +58,6 @@ export default {
   },
   data() {
     return {
-      coffee: {},
       cafes: [],
       isLogin: false
     }
@@ -67,17 +67,13 @@ export default {
     await this.getCoffee();
   },
   methods: {
+    ...mapActions(['fetchCoffee', 'setEditMode']),
     goBack() {
       this.$router.push('/items');
     }, 
     async getCoffee() {
-      try {
-        const coffeeName = this.$route.params.name;
-        const res = await axios.get(`http://localhost:3001/coffee/${coffeeName}`);
-        this.coffee = res.data;
-      } catch (err) {
-        console.error('커피 내용을 받아오는 도중 문제가 생김', err);
-      }
+      const coffeeName = this.$route.params.name;
+      this.fetchCoffee(coffeeName);
     },
     async checkLogin() {
       try {
@@ -95,7 +91,18 @@ export default {
       } catch (err) {
         console.error('삭제 중 문제 발생', err);
       }
+    },
+    edit() {
+      if(this.isLogin) {
+        this.setEditMode();
+        this.$router.push({ name: 'editItem'});
+      } else {
+        alert("권한이 없습니다.");
+      }
     }
+  },
+  computed: {
+    ...mapState(['coffee']),
   }
 }
 </script>
@@ -130,14 +137,14 @@ body {
   border: "0";
   height: 45px;
   width: auto;
-  margin-left: 30px;
+  margin-left: 50px;
 }
 
 .buy, .edit{
   color: white;
   background: black;
   border: none;
-  font-size: 0.9em;
+  font-size: 1em;
   font-weight: 600;
 }
 
@@ -194,6 +201,7 @@ body {
   padding-left: 20px;
   font-size: 1.2em;
   padding-right: 20px;
+  word-break: break-all;
 }
 
 .product-description p {

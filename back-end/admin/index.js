@@ -51,12 +51,16 @@ const addItem = async (req, res) => {
     try {
         const image = await uploadFileGrid(req.file);
 
+        if(!image) {
+            return res.status(500).send("Error saving the image.");
+        }
+
         const client = getMongoDbClient();
         const db = client.db(process.env.MONGODB_NAME);
 
         const coffeeData = {
             name: req.body.name,
-            description: req.body.description,
+            description: req.body.description[0],
             price: req.body.price,
             region: req.body.region,
             weight: Number(req.body.weight),
@@ -70,7 +74,7 @@ const addItem = async (req, res) => {
             name: req.body.name,
             sub_name: req.body.sub_name,
             sub_title: req.body.sub_title,
-            description: req.body.comm_description,
+            description: req.body.description[1],
             image_id: image
         }
 
@@ -86,12 +90,24 @@ const addItem = async (req, res) => {
 
 const updateItem = async (req, res, next) => {
     try {
+        console.log(req.file);
+        /*
         const client = getMongoDbClient();
         const db = client.db(process.env.MONGODB_NAME);
 
         const collection = db.collection('coffees');
 
         const name = req.params.name;
+        const coffeeItem = await collection.findOne({ name: name });
+
+        if(!coffeeItem) {
+            throw new Error(errorMessages.NOT_EXIST_COFFEE);
+        }
+    */
+        console.log(req.body);
+        
+
+        res.send('aa');
     } catch (err) {
         console.error(err);
         next();
@@ -117,9 +133,10 @@ const deleteItem = async (req, res, next) => {
             bucket.delete(new ObjectId(coffeeItem.image_id));
         }
         
-        const result = await collection.deleteOne({name : coffeeItem.name});
+        const result = await collection.deleteOne({name: coffeeItem.name});
+        const reco_result = await collection.deleteOne({name: coffeeItem.name});
 
-        if(result.deletedCount > 0) {
+        if(result.deletedCount > 0 && reco_result >0) {
             res.status(200).send("delete success");
         } else {
             res.status(400).send("Your request was not performed properly.")

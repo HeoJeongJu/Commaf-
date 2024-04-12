@@ -19,7 +19,6 @@ async function _getResultQuestion(name) {
             const imageBase64 = await getImage(questionResult.image_id);
             questionResult.image_url = `data:image/jpeg;base64, ${imageBase64}`;
         }
-
         return questionResult;
     } catch(err) {
         console.error(`Error fetching data: ${err.message}`);

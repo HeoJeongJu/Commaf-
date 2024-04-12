@@ -46,17 +46,15 @@ const routes = [
         component: ResultView
     },
     {
-        path: '/admin',
-        name: 'admin',
+        path: '/login',
+        name: 'login',
         component: AdminLoginView
     },
     {
-        path: '/admin/addItem',
-        name: 'addItem',
+        path: '/admin/editItem',
+        name: 'editItem',
         component: AdminAddItemView
     }
-
-
 ]
 
 export const router = createRouter({

@@ -6,13 +6,14 @@
                 <img src="../../assets/logo.png" class="logo" alt="logo">
             </a>
 
-            <button class="cancel">Cancel</button>
+            <button class="cancel" @click="cancel()">Cancel</button>
         </nav>
         <div>
             <input type="file" id="upload-image" hidden @change="getFileName($event.target.files)"
                 :class="{ 'large-image': imageSelected }" />
             <label for="upload-image" class="upload-image-label">
-                <img src="../../assets/icon_upload.png" id="preview" />
+                <img v-if="imagePreview" :src="imagePreview" id="preview" />
+                <img v-else src="../../assets/icon_upload.png" id="preview" />
             </label>
         </div>
 
@@ -23,7 +24,7 @@
             </div>
             <div class="form-group form-group--inline">
                 <label for="name">Price($)</label>
-                <input type="number" id="price" step="0.01"  v-model="coffee.price">
+                <input type="number" id="price" step="0.01" v-model="coffee.price">
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
@@ -81,7 +82,7 @@
                         <option value="Blueberry">Blueberry</option>
                     </select>
                 </div>
-                <button type="button" @click="addFlavor()">+</button>
+                <button type="button" @click="handleAddFlavor()">+</button>
             </div>
 
             <div class="form-group">
@@ -96,109 +97,153 @@
                         <option value="Pour Over">Pour Over</option>
                     </select>
                 </div>
-                <button type="button" @click="addGrinderOption()">+</button>
+                <button type="button" @click="handleAddGrinderOption()">+</button>
             </div>
 
             <br>
             <br>
             <hr>
-            <h1>커피 추천 결과</h1>
+            <h1 class="result">커피 추천 결과</h1>
             <div class="form-group form-group--inline">
                 <label for="sub_name">Sub Name</label>
-                <input type="text" id="sub_name" v-model="coffee.sub_name">
+                <input type="text" id="sub_name" v-model="recommendation.sub_name">
             </div>
             <div class="form-group form-group--inline">
                 <label for="sub_title">Sub Title</label>
-                <input type="text" id="sub_title" v-model="coffee.sub_title">
+                <input type="text" id="sub_title" v-model="recommendation.sub_title">
             </div>
             <div class="form-group">
                 <label for="comm_description">Description</label>
-                <textarea id="comm_description" v-model="coffee.comm_description"></textarea>
+                <textarea id="comm_description" v-model="recommendation.description"></textarea>
             </div>
 
-            <button type="submit" class="save">저장</button>
+            <button v-if="isEditMode" type="submit" class="save">수정</button>
+            <button v-else type="submit" class="save">저장</button>
         </form>
     </div>
 </template>
 
 <script>
 import axios from 'axios';
+import { mapActions, mapState } from 'vuex';
+import { isEqual } from 'lodash';
+
 export default {
     data() {
         return {
-            coffee: {
-                name: '',
-                price: 0,
-                description: '',
-                region: '',
-                weight: 0,
-                roast_level: 1,
-                flavor_profile: [],
-                grind_option: [],
-                sub_name: '',
-                sub_title: '',
-                comm_description: ''
-            },
+            originCoffee: null,
+            originRecomm: null,
             imageFile: null,
             newFlavor: 'Citrus',
             newGrind: 'Whole Bean',
-            imageSelected: false
+            imageSelected: false,
+            imagePreview: '',
+            imageChanged: false,
+        }
+    },
+    created() {
+        if (this.coffee && this.coffee.image_url) {
+            this.imagePreview = this.coffee.image_url;
+            this.imageSelected = true;
+            this.getRecommendation();
+
+            this.originCoffee = JSON.parse(JSON.stringify(this.coffee));
+            this.originRecomm = JSON.parse(JSON.stringify(this.recommendation));
         }
     },
     methods: {
-        addFlavor() {
-            this.coffee.flavor_profile.push(this.newFlavor);
+        ...mapActions(['addFlavor', 'addGrinderOption', 'fetchRecommendation', 'setEditMode']),
+        handleAddFlavor() {
+            this.addFlavor(this.newFlavor);
         },
-        addGrinderOption() {
-            this.coffee.grind_option.push(this.newGrind);
+        handleAddGrinderOption() {
+            this.addGrinderOption(this.newGrind);
         },
         async getFileName(files) {
             if(files.length > 0) {
-                this.imageFile = files[0];
-                this.imageSelected = true;
-                this.previewImage();
+                const file = files[0];
+                this.imageChanged = true;
+                this.imageFile = file;
+                this.previewImage(file);
             }
-            
         },
-        previewImage() {
+        previewImage(file) {
             const reader = new FileReader();
             reader.onload = e => {
-                const previewImage = document.getElementById('preview');
-                previewImage.src = e.target.result;
+                this.imagePreview = e.target.result;
+                this.imageSelected = true;
             };
-            reader.readAsDataURL(this.imageFile);
+            reader.readAsDataURL(file);
+        },
+        async getRecommendation() {
+            this.fetchRecommendation();
         },
         async submitForm() {
-            try {
                 const formData = new FormData();
 
+                console.log("this.imageFile", this.imageFile);
+            if (this.imageChanged) {
+                formData.append('image', this.imageFile);
+            }
+                
                 Object.keys(this.coffee).forEach(key => {
-                    if (Array.isArray(this.coffee[key])) {
-                        this.coffee[key].forEach(value => {
-                            formData.append(`${key}[]`, value);
-                        });
-                    } else {
-                        formData.append(key, this.coffee[key]);
+
+                    if (this.isEditMode && this.originCoffee && !isEqual(JSON.stringify(this.coffee[key]), JSON.stringify(this.originCoffee[key]))) {
+                        console.log("수정모드이고 변경된거 있을때");
+                        if (Array.isArray(this.coffee[key])) {
+                            this.coffee[key].forEach(value => formData.append(key, value));
+                        } else {
+                            formData.append(key, this.coffee[key]);
+                        }
+                    } else if (!this.isEditMode) {
+                        console.log("수정모드 아닐때때");
+                        if (Array.isArray(this.coffee[key])) {
+                            this.coffee[key].forEach(value => formData.append(key, value));
+                        } else {
+                            formData.append(key, this.coffee[key]);
+                        }
+                    }
+                });
+ 
+                // recommendation 데이터에 대한 처리
+                Object.keys(this.recommendation).forEach(key => {
+                    if (this.originRecomm && this.isEditMode && !isEqual(JSON.stringify(this.recommendation[key]), JSON.stringify(this.originRecomm[key]))) {
+                        formData.append(key, this.recommendation[key]);
+                    } else if(!this.isEditMode) {
+                        formData.append(key, this.recommendation[key]);
                     }
                 });
 
-                if(this.imageFile) {
-                    formData.append('image', this.imageFile);
+            
+            try{
+                if (this.isEditMode) {
+                    const response = await axios.patch(`http://localhost:3001/admin/item/${this.originCoffee.name}`, formData, {
+                        headers: { 'Content-Type': 'multipart/form-data' },
+                        withCredentials: true
+                    });
+                    console.log("Updated successfully:", response.data);
+                } else {
+                    const response = await axios.post('http://localhost:3001/admin/addItem', formData, {
+                        headers: { 'Content-Type': 'multipart/form-data' },
+                        withCredentials: true
+                    });
+                    console.log("Added successfully:", response.data);
+                
+                    //this.$router.push({ name: 'items' });
                 }
-
-                await axios.post('http://localhost:3001/admin/addItem', formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    },
-                    withCredentials: true
-                });
-
-                this.$router.push({ name: 'items' });
             } catch (err) {
-                alert("추가 중 오류가 발생했습니다. 다시 한 번 확인해 주세요.");
-                console.error('추가 중 오류가 발생했습니다.', err);
+                alert("작업 중 오류가 발생했습니다. 다시 한 번 확인해 주세요.");
+                console.error('작업 중 오류가 발생했습니다.', err);
             }
+        
+        },
+        cancel() {
+            this.setEditMode();
+            this.$router.go(-1);
         }
+    },
+    computed: {
+        ...mapState(['coffee', 'recommendation', 'isEditMode']),
     }
 }
 </script>
@@ -367,6 +412,9 @@ button[type="submit"] {
     height: auto;
 }
 
+.result {
+    padding-left: 20px;
+}
 
 @media (min-width: 900px) {
 

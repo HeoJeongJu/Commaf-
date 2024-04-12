@@ -35,7 +35,7 @@ const uploadFileGrid = async (file) => {
             uploadStream.on('finish', () => resolve(uploadStream.id.toString()));
         });
     } else {
-        res.status(400).send("No file uploaded");
+        return null;
     }
 };
 

@@ -41,7 +41,6 @@ export default {
       };
 
       var map = new kakao.maps.Map(container, options);
-      console.log(this.markers);
       this.markers.forEach((markerData) => {
         var marker = new kakao.maps.Marker({
           map: map,
@@ -79,7 +78,6 @@ export default {
           lng: parseFloat(marker.y),
           addr: marker.sitewhladdr
         })));
-        console.log(res.data);
       } catch (err) {
         console.error("마커를 받아오는 도중 문제가 생김", err);
       }

@@ -12,7 +12,7 @@ export default {
     mounted() {
         setTimeout(() => {
             this.$router.push('/quiz');
-        }, 8000);
+        }, 7000);
     }
 }
 </script>
