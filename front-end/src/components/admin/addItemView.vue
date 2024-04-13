@@ -126,7 +126,6 @@
 <script>
 import axios from 'axios';
 import { mapActions, mapState } from 'vuex';
-import { isEqual } from 'lodash';
 
 export default {
     data() {
@@ -145,14 +144,13 @@ export default {
         if (this.coffee && this.coffee.image_url) {
             this.imagePreview = this.coffee.image_url;
             this.imageSelected = true;
-            this.getRecommendation();
 
             this.originCoffee = JSON.parse(JSON.stringify(this.coffee));
             this.originRecomm = JSON.parse(JSON.stringify(this.recommendation));
         }
     },
     methods: {
-        ...mapActions(['addFlavor', 'addGrinderOption', 'fetchRecommendation', 'setEditMode']),
+        ...mapActions(['addFlavor', 'addGrinderOption', 'setEditMode']),
         handleAddFlavor() {
             this.addFlavor(this.newFlavor);
         },
@@ -179,42 +177,47 @@ export default {
             this.fetchRecommendation();
         },
         async submitForm() {
-                const formData = new FormData();
+            const formData = new FormData();
 
-                console.log("this.imageFile", this.imageFile);
             if (this.imageChanged) {
                 formData.append('image', this.imageFile);
             }
                 
-                Object.keys(this.coffee).forEach(key => {
+            // coffee에 대한 처리
+            Object.keys(this.coffee).forEach(key => {
+                // coffee와 recommendation 분리하기 위해
+                const formKey = `coffee_${key}`;
 
-                    if (this.isEditMode && this.originCoffee && !isEqual(JSON.stringify(this.coffee[key]), JSON.stringify(this.originCoffee[key]))) {
-                        console.log("수정모드이고 변경된거 있을때");
-                        if (Array.isArray(this.coffee[key])) {
-                            this.coffee[key].forEach(value => formData.append(key, value));
-                        } else {
-                            formData.append(key, this.coffee[key]);
-                        }
-                    } else if (!this.isEditMode) {
-                        console.log("수정모드 아닐때때");
-                        if (Array.isArray(this.coffee[key])) {
-                            this.coffee[key].forEach(value => formData.append(key, value));
-                        } else {
-                            formData.append(key, this.coffee[key]);
-                        }
+                // 수정모드이고 변경된 것이 존재할때
+                if (this.isEditMode && this.originCoffee && JSON.stringify(this.coffee[key]) !== JSON.stringify(this.originCoffee[key])) {
+                    if (Array.isArray(this.coffee[key])) {
+                        this.coffee[key].forEach(value => formData.append(formKey, value));
+                    } else {
+                        formData.append(formKey, this.coffee[key]);
+                    } 
+                
+                // 추가 일때
+                } else if (!this.isEditMode) {
+                    if (Array.isArray(this.coffee[key])) {
+                        this.coffee[key].forEach(value => formData.append(key, value));
+                    } else {
+                        formData.append(key, this.coffee[key]);
                     }
-                });
- 
-                // recommendation 데이터에 대한 처리
-                Object.keys(this.recommendation).forEach(key => {
-                    if (this.originRecomm && this.isEditMode && !isEqual(JSON.stringify(this.recommendation[key]), JSON.stringify(this.originRecomm[key]))) {
-                        formData.append(key, this.recommendation[key]);
-                    } else if(!this.isEditMode) {
-                        formData.append(key, this.recommendation[key]);
-                    }
-                });
+                }
+            });
 
-            
+            // recommendation 데이터에 대한 처리
+            Object.keys(this.recommendation).forEach(key => {
+                const formKey = `recommendation_${key}`; 
+
+                if (this.isEditMode && this.originRecomm && JSON.stringify(this.recommendation[key]) !== JSON.stringify(this.originRecomm[key])) {
+                    formData.append(formKey, this.recommendation[key]);
+                } else if(!this.isEditMode) {
+                    formData.append(key, this.recommendation[key]);
+                }
+            });
+
+
             try{
                 if (this.isEditMode) {
                     const response = await axios.patch(`http://localhost:3001/admin/item/${this.originCoffee.name}`, formData, {
@@ -228,14 +231,14 @@ export default {
                         withCredentials: true
                     });
                     console.log("Added successfully:", response.data);
-                
-                    //this.$router.push({ name: 'items' });
                 }
+
+                this.setEditMode();
+                this.$router.push({ name: 'items' });
             } catch (err) {
-                alert("작업 중 오류가 발생했습니다. 다시 한 번 확인해 주세요.");
-                console.error('작업 중 오류가 발생했습니다.', err);
+                alert(err.response.data);
+                console.log(err.response.data);
             }
-        
         },
         cancel() {
             this.setEditMode();

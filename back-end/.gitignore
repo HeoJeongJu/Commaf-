@@ -3,6 +3,7 @@ node_modules
 /dist
 .env
 views
+package-lock.json
 
 
 # local env files

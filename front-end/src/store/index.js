@@ -45,9 +45,8 @@ export const store = createStore({
                 console.error(error);
             }
         },
-        async fetchRecommendation({ commit, state }) {
+        async fetchRecommendation({ commit }, coffeeName) {
             try {
-                const coffeeName = state.coffee.name;
                 const res = await axios.get(`http://localhost:3001/recommendations/${coffeeName}`);
                 commit('setRecommendation', res.data);
             } catch (error) {

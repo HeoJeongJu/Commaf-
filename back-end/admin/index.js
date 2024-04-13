@@ -1,7 +1,7 @@
 const svc = require('./service.js');
 const { getMongoDbClient } = require("../middlewares/mongoDB");
 const passport = require('../passport/index');
-const { uploadFileGrid } = require('../middlewares/upload.js');
+const { uploadFileGrid, updateFileGrid } = require('../middlewares/upload.js');
 const errorMessages = require('../error/errorMessages.js');
 const { ObjectId } = require('mongodb');
 const { GridFSBucket } = require('mongodb');
@@ -89,28 +89,70 @@ const addItem = async (req, res) => {
 }
 
 const updateItem = async (req, res, next) => {
+    
+    // 바뀐 파일 및 데이터가 있는지 확인
+    if(!req.file && (!req.body || Object.keys(req.body).length === 0)) {
+        return res.status(400).send('No data provided for update.');
+    }
+
     try {
-        console.log(req.file);
-        /*
         const client = getMongoDbClient();
         const db = client.db(process.env.MONGODB_NAME);
 
-        const collection = db.collection('coffees');
+        const coffeeCollection = db.collection('coffees');
+        const recommCollection = db.collection('recommendations');
 
         const name = req.params.name;
-        const coffeeItem = await collection.findOne({ name: name });
 
-        if(!coffeeItem) {
-            throw new Error(errorMessages.NOT_EXIST_COFFEE);
+        const coffeeData = {};
+        const recommendationData = {};
+    
+        for (const [key, value] of Object.entries(req.body)) {
+            if (key.startsWith('coffee_')) {
+                const newKey = key.replace('coffee_', '');
+                coffeeData[newKey] = value;
+
+                // 만약 커피의 이름을 바꾼거라면 추천쪽의 커피 이름도 바뀌어야함
+                if(newKey === 'name') {
+                    recommendationData[newKey] = value;
+                }
+            } else if (key.startsWith('recommendation_')) {
+                const newKey = key.replace('recommendation_', '');
+                recommendationData[newKey] = value;
+            }
         }
-    */
-        console.log(req.body);
         
+        console.log("coffeeData", coffeeData);
+        console.log("recommendationData", recommendationData);
+        
+        
+        if(req.file) {
+            const image = await updateFileGrid(req.file, name);
+            coffeeData.image_id = image;
+            recommendationData.image_id = image;
+        } 
 
-        res.send('aa');
+        
+        if(Object.keys(coffeeData).length > 0 && Object.keys(recommendationData).length > 0) {
+            await Promise.all([
+                coffeeCollection.updateOne({ name }, { $set: coffeeData }),
+                recommCollection.updateOne({ name }, { $set: recommendationData })
+            ]);
+
+            res.status(200).send("Coffee and recommendation editing were successful.");
+        } else if (Object.keys(coffeeData).length > 0) {
+            await coffeeCollection.updateOne({ name }, { $set: coffeeData });
+            res.status(200).send("Coffee editing were successful.");
+        } else if(Object.keys(recommendationData).length > 0) {
+            await recommCollection.updateOne({ name }, { $set: recommendationData });
+            res.status(200).send("Recommendation editing were successful.");
+        }
+        else {
+            res.status(200).send('There is no data to modify.');
+        }
     } catch (err) {
         console.error(err);
-        next();
+        res.status(500).send('Failed to update due to an internal error.');
     }
 }
 
@@ -136,7 +178,7 @@ const deleteItem = async (req, res, next) => {
         const result = await collection.deleteOne({name: coffeeItem.name});
         const reco_result = await collection.deleteOne({name: coffeeItem.name});
 
-        if(result.deletedCount > 0 && reco_result >0) {
+        if(result.deletedCount > 0 && reco_result > 0) {
             res.status(200).send("delete success");
         } else {
             res.status(400).send("Your request was not performed properly.")

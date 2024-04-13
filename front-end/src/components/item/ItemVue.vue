@@ -64,16 +64,18 @@ export default {
   },
   async created() {
     await this.checkLogin();
-    await this.getCoffee();
+    await this.getItem();
+
   },
   methods: {
-    ...mapActions(['fetchCoffee', 'setEditMode']),
+    ...mapActions(['fetchCoffee', 'fetchRecommendation', 'setEditMode']),
     goBack() {
       this.$router.push('/items');
     }, 
-    async getCoffee() {
+    async getItem() {
       const coffeeName = this.$route.params.name;
       this.fetchCoffee(coffeeName);
+      this.fetchRecommendation(coffeeName);
     },
     async checkLogin() {
       try {
@@ -90,6 +92,7 @@ export default {
         this.$router.push({ name: 'items' });
       } catch (err) {
         console.error('삭제 중 문제 발생', err);
+        alert(err);
       }
     },
     edit() {
