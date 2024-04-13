@@ -58,12 +58,11 @@ export const store = createStore({
         },
         async updateCoffee({ commit, state }, updatedFields) {
             try {
-                console.log("Submitting:", updatedFields);
                 const res = await axios.patch(`http://localhost:3001/admin/item/${state.coffee.name}`, updatedFields, { withCredentials: true});
                 commit('setCoffee', res.data);
             } catch (error) {
                 console.error(error);
             }
-        },
+        }
     }
 })

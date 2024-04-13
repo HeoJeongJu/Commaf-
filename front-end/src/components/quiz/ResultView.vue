@@ -5,7 +5,7 @@
             <a href="/">
                 <img src="../../assets/logo.png" class="logo" alt="logo">
             </a>
-            <button @click="buyNow">Share</button>
+            <button @click="Retry">Share</button>
         </nav>
 
         <div v-if="recommendation" class="product-card">
@@ -17,7 +17,7 @@
                 {{ recommendation. description }}
             </p>
             <div class="button-group">
-                <button class="buy" @click="buyNow">Buy Now</button>
+                <button class="Retry" @click="Retry">Retry</button>
                 <button class="more" @click="learnMore">Learn More</button>
             </div>
         </div>
@@ -57,6 +57,9 @@ export default {
         learnMore() {
             this.$router.push(`/item/${this.recommendation.name}`);
         },
+        Retry() {
+            this.$router.push({ name: 'quiz' });
+        }
     }
 }
 </script>
@@ -139,7 +142,7 @@ body {
     margin-bottom: 20px;
 }
 
-.button-group .buy {
+.button-group .Retry {
     padding: 10px 20px;
     border: none;
     border-radius: 40px;

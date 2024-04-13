@@ -71,8 +71,16 @@ export default {
         async fetchRecommendations() {
             try {
                 const res = await axios.post('http://localhost:3001/recommendations/result', this.selectedOption );
+
+                console.log(res.data);
+                if(res.data) {
+                    this.$router.push({ name: 'result', query: { recommendation: res.data } });
+                } else {
+                    alert("조건에 맞는 원두가 없습니다. 추가하거나 다시 한 번 테스트를 진행해 주세요.");
+                    this.$router.go({ name: 'quiz' });
+                }
                 
-                this.$router.push({ name: 'result', query: { recommendation: res.data } });
+                
             } catch (err) {
                 console.error('추천을 가져오는 중 오류 발생:', err);
             }

@@ -138,15 +138,23 @@ export default {
             imageSelected: false,
             imagePreview: '',
             imageChanged: false,
+            isLogin: false
         }
     },
-    created() {
-        if (this.coffee && this.coffee.image_url) {
-            this.imagePreview = this.coffee.image_url;
-            this.imageSelected = true;
+    async created() {
+        await this.checkLogin();
 
-            this.originCoffee = JSON.parse(JSON.stringify(this.coffee));
-            this.originRecomm = JSON.parse(JSON.stringify(this.recommendation));
+        if(this.isLogin) {
+                if (this.coffee && this.coffee.image_url) {
+                this.imagePreview = this.coffee.image_url;
+                this.imageSelected = true;
+
+                this.originCoffee = JSON.parse(JSON.stringify(this.coffee));
+                this.originRecomm = JSON.parse(JSON.stringify(this.recommendation));
+            }
+        } else {
+            alert("접근 권한이 없습니다.");
+            this.$router.go(-1);
         }
     },
     methods: {
@@ -243,6 +251,14 @@ export default {
         cancel() {
             this.setEditMode();
             this.$router.go(-1);
+        },
+        async checkLogin() {
+            try {
+                const res = await axios.get('http://localhost:3001/admin/status', { withCredentials: true });
+                this.isLogin = res.data.isLogin;
+            } catch (err) {
+                console.error('로그인 상태 확인 중 문제 발생', err);
+            }
         }
     },
     computed: {

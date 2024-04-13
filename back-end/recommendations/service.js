@@ -50,6 +50,10 @@ async function _getRecommend(tags) {
 
         const results = await collection.find(query).toArray();
         
+        if(results.length < 1) {
+            return null;
+        }
+        
         if(results.length > 1) {
             const randomIndex = Math.floor(Math.random() * results.length);
 

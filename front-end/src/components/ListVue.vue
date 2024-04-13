@@ -84,8 +84,9 @@ export default {
     async logout() {
       try {
         await axios.get('http://localhost:3001/admin/logout', { withCredentials: true });
+        console.log("di");
         this.isLogin = false;
-        this.$router.push('/home');
+        this.$router.go('/home');
       } catch (err) {
         console.error('로그아웃 중 문제 발생', err);
       }

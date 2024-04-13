@@ -25,7 +25,7 @@ app.use(session({
   saveUninitialized: false,
   secret: process.env.SECRET_COOKIE,
   cookie: {
-    maxAge: 30 * 24 * 60 * 60 * 1000,
+    maxAge: 3600000,
     httpOnly: true,
     secure: false,
   },
