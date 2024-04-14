@@ -7,7 +7,9 @@
       </a>
 
       <button class="edit" @click="edit()" v-if="isLogin">Edit</button>
-      <button class="buy" v-else>Share</button>
+      <a v-else href="https://coffee-learn.mooo.com/items/coffee_learn/64b18c48ae0a140a8801de36" target="_blank">
+                <button class="buy">Buy Now</button>
+      </a>
     </nav>
 
     <div class="product-content">
@@ -92,7 +94,7 @@ export default {
         this.$router.push({ name: 'items' });
       } catch (err) {
         console.error('삭제 중 문제 발생', err);
-        alert(err);
+        this.$router.push({ name: 'items' });
       }
     },
     edit() {

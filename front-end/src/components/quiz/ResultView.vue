@@ -5,7 +5,9 @@
             <a href="/">
                 <img src="../../assets/logo.png" class="logo" alt="logo">
             </a>
-            <button @click="Retry">Share</button>
+            <a href="https://coffee-learn.mooo.com/items/coffee_learn/64b18c48ae0a140a8801de36" target="_blank">
+                <button>Buy Now</button>
+            </a>
         </nav>
 
         <div v-if="recommendation" class="product-card">
@@ -91,7 +93,6 @@ body {
     font-style: normal;
     font-weight: 600;
 }
-
 
 .logo {
     height: 45px;

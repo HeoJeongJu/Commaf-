@@ -1,10 +1,12 @@
-var createError = require('http-errors');
+var createError = require('http-errors');   // http 오류 객체 생성 모듈
 var express = require('express');
-var path = require('path');
+var path = require('path');                 // 파일 경로 처리 유틸리티 제공
 var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var cors = require('cors');
-const helmet = require('helmet');
+// 로그 관리, 로그 파일을 생성하거나 전송
+// POST /recommendations/result 200 23.447 ms - 4
+var logger = require('morgan');             
+var cors = require('cors');                 // 교차 출처 리소스 공유
+const helmet = require('helmet');           // http 헤더 보안
 const MongoStore = require('connect-mongo');
 
 require('dotenv').config();
@@ -17,6 +19,7 @@ app.use(cors({
 }));
 
 const session = require('express-session');
+// strategy에 따른 요청으로 인증하기
 const passport = require('passport');
 require('./passport/index.js');
 
@@ -46,19 +49,16 @@ var cafeRoutes = require('./cafe/routes.js');
 var adminRoutes = require('./admin/routes.js');
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-
+app.set('views', path.join(__dirname, 'views'));  // 디렉토리 위치 기준 설정
+app.set('view engine', 'jade');                   // 뷰 엔진 설정
 
 app.use(helmet());
 
-
-
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false })); // formData 파싱, req.body에 포함
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));  // 실행 중인 스크립트 절대 경로
 
 app.use('/coffee', coffeeRoutes);
 app.use('/question', questionRoutes);

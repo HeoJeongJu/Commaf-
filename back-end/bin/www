@@ -3,18 +3,17 @@
 /**
  * Module dependencies.
  */
-
 var app = require('../app');
+
+//back-end:server : 네임 스페이스
 var debug = require('debug')('back-end:server');
 var http = require('http');
-const mongoose = require('mongoose');
 require('dotenv').config();
 const { getMongoDbClient, connectMongoDB } = require("../middlewares/mongoDB");
 
 /**
  * Get port from environment and store in Express.
  */
-
 var port = normalizePort(process.env.PORT);
 app.set('port', port);
 
@@ -24,24 +23,6 @@ app.set('port', port);
 
 var server = http.createServer(app);
 
-/**
- * Listen on provided port, on all network interfaces.
- */
-
-
-/*
-const DB_URL = process.env.MONGODB_URL;
-
-mongoose.connect(DB_URL);
-const db = mongoose.connection;
-
-db.on("connected", () =>
-  console.log("정상적으로 MongoDB 서버에 연결되었습니다.  " + DB_URL)
-);
-db.on("error", (error) =>
-  console.error("\nMongoDB 연결에 실패하였습니다...\n" + DB_URL + "\n" + error)
-);
-*/
 
 connectMongoDB().then(connected => {
   if (connected) {
@@ -54,10 +35,11 @@ connectMongoDB().then(connected => {
   }
 });
 
-/**
- * Normalize a port into a number, string, or false.
- */
 
+/**
+ * 변환된 값이 0 이상의 정수면 이를 반환하지만, 그 외의 경우는 유효하지 않은 포트 번호임을 나타냄
+ * 서버를 시작할 포트 번호를 설정하는 데 사용되며, 유효하지 않은 포트 값을 걸러내는 역할
+ */
 function normalizePort(val) {
   var port = parseInt(val, 10);
 
@@ -79,21 +61,23 @@ function normalizePort(val) {
  */
 
 function onError(error) {
+  // 오류가 서버가 포트를 수신하는 과정에서 발생했는가?
   if (error.syscall !== 'listen') {
     throw error;
   }
 
+  // 포트 번호가 문자열인지 숫자인지에 따라 오류 메시지 구성
   var bind = typeof port === 'string'
     ? 'Pipe ' + port
     : 'Port ' + port;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
-    case 'EACCES':
+    case 'EACCES':  // 포트에 대한 접근 권한이 없음
       console.error(bind + ' requires elevated privileges');
       process.exit(1);
       break;
-    case 'EADDRINUSE':
+    case 'EADDRINUSE':  // 포트가 이미 사용 중일 때
       console.error(bind + ' is already in use');
       process.exit(1);
       break;
@@ -103,17 +87,24 @@ function onError(error) {
 }
 
 /**
- * Event listener for HTTP server "listening" event.
+ * 서버가 정상적으로 시작되어 포트 혹은 파이프에 대한 수신을 시작했을 때 호출
+ * 서버가 올바르게 시작되었는지 확인, 서버 상태를 로깅하여 쉽게 파악할 수 있음
  */
 
 function onListening() {
-  var addr = server.address();
+  var addr = server.address();  // 서버가 바인드된 주소 정보 가져오기
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
+
+  // debug 모듈을 통해 어떤 주소(pipe, port)에 서버가 수신 중인지 로그 출력
   debug('Listening on ' + bind);
 }
 
+/**
+ * SIGINT 신호(Ctrl+C)가 발생했을때
+ * MongoDB 연결을 종료
+ */
 process.on('SIGINT', async () => {
   const client = getMongoDbClient();
   if (client) {

@@ -4,11 +4,14 @@ const svc = require('../admin/service');
 
 
 passport.serializeUser((admin, done) => {
+    // 6. req.session에 사용자 아이디 키 값 저장
     done(null, admin.id);
 });
 
+// 모든 요청시 항상 실행되는 미들웨어
 passport.deserializeUser(async(req, id, done) => {
     try {
+        // 7. 세션 저장소에 사용자 아이디가 있다면 DB를 조회하여 req.admin에 정보를 삽입
         const admin = await svc._getAdmin(id);
         done(null, admin);
     } catch(err) {
@@ -16,11 +19,13 @@ passport.deserializeUser(async(req, id, done) => {
     }   
 });
 
+// 2. passport.use 호출
 passport.use(new LocalStrategy({
     session: true,
     usernameField: 'id',
     passwordField: 'password'
     }, async (id, password, done) => {
+        // 3. 로그인 전략 실행 후 done()을 호출하면 다시 돌아가 다음 미들웨어 실행
         try {
             const admin = await svc._getAdmin(id);
 

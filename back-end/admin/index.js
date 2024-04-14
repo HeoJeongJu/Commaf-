@@ -9,7 +9,9 @@ require('dotenv').config();
 
 
 const login = (req, res, next) => {
+    // 1. 미들웨어를 거치고 authenticate 호출
     passport.authenticate('local', (err, admin, info) => {
+        // 4. 미들웨어
         if(err) {
             console.error(err);
             return next(err);
@@ -17,11 +19,14 @@ const login = (req, res, next) => {
         if(!admin) {
             return res.redirect(info.message);
         }
+        // 5. req.login이 passport의 serializeUser 호출
         return req.login(admin, (err) => {
             if(err) {
                 console.error(err);
                 return next(err);
             }
+
+            // 8. 클라이언트에 세션 쿠기 전송
             return res.status(200).send(admin);
         });
     }) (req, res, next);
